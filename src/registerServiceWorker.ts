@@ -1,3 +1,6 @@
+/*
+添加 PWA 功能,比如离线缓存、推送通知等。
+*/
 /* eslint-disable no-console */
 
 import { register } from 'register-service-worker'
