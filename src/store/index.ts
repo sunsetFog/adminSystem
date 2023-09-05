@@ -1,5 +1,8 @@
 import { createStore } from 'vuex'
 
+import tabs from './modular/tabs.js'
+import login from './modular/login.js'
+
 export default createStore({
   state: {
   },
@@ -10,5 +13,7 @@ export default createStore({
   actions: {
   },
   modules: {
+    tabs,
+    login
   }
 })
