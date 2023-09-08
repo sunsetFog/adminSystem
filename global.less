@@ -1,3 +1,14 @@
 /*
 项目根目录下，全局less
+
+本文件加载方式：
+1.vue.config.js
+2.main.ts里
+    import '@sky/styles/globalBaseStyle.less';
+3.App.vue里，就不能用scope作用域了
+
+只有在需要加载外部样式的时候,才会使用 @import url(),这会产生新的网络请求
+@import url('~@sky/styles/globalBaseStyle.less');
 */
+@import '~@sky/styles/globalBaseStyle.less';
+

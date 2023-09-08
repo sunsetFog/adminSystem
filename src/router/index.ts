@@ -1,3 +1,4 @@
+// import { emit } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 
@@ -22,6 +23,42 @@ import FirstRouter from './modules/firstRouter'
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: FirstRouter
+})
+// 转圈进度条，路由变化触发
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+// 使用vue-cookies
+import VueCookies from 'vue-cookies';
+import store from '@/store';
+// 路由拦截
+router.beforeEach((to, from) => {
+  if (from.path == '/' && to.path != '/login') {
+    // @ts-ignore
+    if (VueCookies.get('tokenAdminClient')) {
+        store.dispatch('routerApple').then(function(value) {
+            console.log('--then结束--');
+            router.addRoute(value);
+            return false;
+        });
+    } else {
+      return { path: '/login' };
+    }
+}
+  NProgress.start(); // 开始动画
+  return true;
+})
+// 路由结束时
+router.afterEach((to, from) => {
+  NProgress.done(); // 结束动画
+  /*
+    触发事件
+    在其他vue里接收事件
+    this.$router.on('ROUTE_FINISHED', to => {
+
+    })
+   */
+  // emit('ROUTE_FINISHED', to);
+  
 })
 
 export default router
