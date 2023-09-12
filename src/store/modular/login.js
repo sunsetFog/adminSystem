@@ -25,7 +25,12 @@ function luyou(arr) {
             icon: item.icon,
             cache: item.cache
         }
-        item.component = resolve => require([ '@/views' + item.path + '.vue' ],resolve);
+        /*
+            vue3差异化：打印，components属性里藏有报错信息
+            异常：TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them at Function.invokeGetter
+        */
+        // item.component = resolve => require([ '@/views' + item.path + '.vue' ],resolve);
+        item.component = () => import('@/views' + item.path + '.vue');
         delete item.cache;
         delete item.createTime;
         delete item.hidden;

@@ -23,7 +23,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { mapMutations, mapGetters, mapActions } from 'vuex';
 import {
     defineComponent

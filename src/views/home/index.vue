@@ -45,7 +45,7 @@
   </section>
 </template>
     
-<script>
+<script lang="ts">
 import menuDesign from '@/components/menuDesign.vue';
 import tabsDesign from '@/components/tabsDesign.vue';
 import {

@@ -28,7 +28,10 @@
                     <span>{{item.title}}</span>
                 </template>
                 <el-menu-item-group>
-                    <div v-for="(val,ind) in item.children" :key="val.key" v-if="val.hidden != 1">
+                    <!-- 
+                        v-if="val.hidden != 1"
+                     -->
+                    <div v-for="(val,ind) in item.children" :key="val.key">
                         <!-- 第二级 -->
                         <!-- el-submenu的index绑定是@select事件的参数,也是:default-active的参数 -->
                         <el-menu-item :index="val.key">
@@ -44,7 +47,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { mapMutations, mapGetters, mapActions } from 'vuex';
 import {
     defineComponent
