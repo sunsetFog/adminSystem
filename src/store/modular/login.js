@@ -1,4 +1,4 @@
-import apiHttp from '@sky/axios/request1/http.ts';
+import apiHttp from '@sky/axios/request2/http.js';
 import lodash from 'lodash'
 import finalRouter from '@/router/modules/finalRouter.ts'
 
@@ -75,7 +75,7 @@ const login = {
     actions: {
         async routerApple({state, commit, dispatch}, params) {
             await apiHttp({
-                url: process.env.core_url + '/sky/menu/treeRouter',
+                url: '/sky/menu/treeRouter',
                 method: 'get',
                 params: {
                     subject: 'crm'
@@ -88,7 +88,7 @@ const login = {
             })
 
             await apiHttp({
-                url: process.env.core_url + '/sky/menu/treeMenu',
+                url: '/sky/menu/treeMenu',
                 method: 'get',
                 params: {
                     subject: 'crm'

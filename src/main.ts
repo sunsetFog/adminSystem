@@ -52,6 +52,7 @@ means.openDB('ex_dbname', 1, storeName, function(db){
 });
 
 // --- 加载 ---
+import i18n from '@sky/i18n';
 
 /*
 vue3 引入element-ui
@@ -68,7 +69,8 @@ import 'viewerjs/dist/viewer.css';
 
 rainbow.use(store)
 .use(router)
-.use(ElementUI, { size: 'small', zIndex: 3000 })
+.use(ElementUI, { size: 'small', zIndex: 3000, locale: i18n.locale }) // 配置 Element Plus 的语言
 .use(VueCookies)
+.use(i18n)
 // .use(Viewer)
 .mount('#app')
