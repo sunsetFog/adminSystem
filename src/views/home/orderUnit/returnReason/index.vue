@@ -17,16 +17,16 @@
             <el-table-column prop="name" label="原因类型" min-width="80"></el-table-column>
             <el-table-column prop="sort" label="排序" min-width="60"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">是否启用</template>
-                <template slot-scope="scope">
+                <template #header>是否启用</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="0" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column prop="createTime" label="添加时间" min-width="120"></el-table-column>
 
             <el-table-column width="150" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
                 </template>
@@ -62,10 +62,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -80,7 +80,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/returnReason/list',
+                url: '/sky/returnReason/list',
                 method: 'get',
                 params: params
             })
@@ -111,7 +111,7 @@ export default {
                         status: value
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/returnReason/update',
+                        url: '/sky/returnReason/update',
                         method: 'post',
                         data: params
                     })
@@ -148,7 +148,7 @@ export default {
                         ids: row.id
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/returnReason/delete',
+                        url: '/sky/returnReason/delete',
                         method: 'post',
                         params: params
                     })

@@ -2,7 +2,7 @@
     <section id="sortDialog">
         <el-dialog
             title="设置排序"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -53,7 +53,7 @@ export default {
             let params = that.withForm;
             params.id = that.save_row.id
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeNewProduct/update',
+                url: '/sky/homeNewProduct/update',
                 method: 'post',
                 data: params
             })

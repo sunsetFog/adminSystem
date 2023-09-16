@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="600px"
             :close-on-click-modal="false"
             >
@@ -141,7 +141,7 @@ export default {
             let that = this;
             let params = that.paramsWay();
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeAdvertise/add',
+                url: '/sky/homeAdvertise/add',
                 method: 'post',
                 data: params
             })
@@ -164,7 +164,7 @@ export default {
             let params = that.paramsWay();
             params.id = that.save_row.id;
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeAdvertise/update',
+                url: '/sky/homeAdvertise/update',
                 method: 'post',
                 data: params
             })

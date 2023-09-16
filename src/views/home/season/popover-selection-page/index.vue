@@ -1,7 +1,7 @@
 <template>
     <section id="popover-selection-page">
 <!--
-   slot="reference" 手动触发 Popover
+   #reference 手动触发 Popover
    下拉框v-model和el-option的数组有关联的，此时要全部数据
 
     bug: ***
@@ -40,7 +40,7 @@
   v-model="box_visible"
   >
 
-<el-select slot="reference" v-model="choice_arr" multiple placeholder="请选择" @click.native="choiceWay" @remove-tag="removeTag" popper-class="cool-dropdown">
+<el-select #reference v-model="choice_arr" multiple placeholder="请选择" @click.native="choiceWay" @remove-tag="removeTag" popper-class="cool-dropdown">
     <el-option
       v-for="item in all_data"
       :key="item.id"
@@ -52,7 +52,7 @@
 <el-row :gutter="20" style="margin-bottom: 20px;">
     <el-col :span="12">
         <el-input placeholder="请输入品牌名称" v-model="keyword">
-            <el-button slot="append" icon="el-icon-search" @click="queryWay()"></el-button>
+            <el-button #append icon="el-icon-search" @click="queryWay()"></el-button>
         </el-input>
     </el-col>
     <el-col :span="12">
@@ -117,7 +117,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/list',
+                url: '/sky/brand/list',
                 method: 'get',
                 params: params
             })
@@ -142,7 +142,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/list',
+                url: '/sky/brand/list',
                 method: 'get',
                 params: params
             })

@@ -34,11 +34,14 @@ import store from '@/store';
 router.beforeEach((to, from) => {
   if (from.path == '/' && to.path != '/login') {
     // @ts-ignore
-    if (VueCookies.get('tokenAdminClient')) {
+    if (true || VueCookies.get('tokenAdminClient')) {
         store.dispatch('routerApple').then(function(value) {
-            console.log('--then结束--');
-            router.addRoute(value);
-            return false;
+            console.log('--then结束--', to, from);
+            for (let i = 0; i < value.length; i++) {
+              const item = value[i];
+              router.addRoute(item);
+            }
+            return { path: to.path };
         });
     } else {
       return { path: '/login' };

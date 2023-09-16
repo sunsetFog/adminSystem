@@ -26,8 +26,8 @@
             <el-table-column width="50" type="index" label="序号"></el-table-column>
             <el-table-column prop="username" label="账号" min-width="80"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">头像</template>
-                <template slot-scope="scope">
+                <template #header>头像</template>
+                <template v-slot="scope">
                     <previewPictures :photoList="[scope.row.icon]"></previewPictures>
                 </template>
             </el-table-column>
@@ -36,15 +36,15 @@
             <el-table-column prop="createTime" label="添加时间" min-width="100"></el-table-column>
             <el-table-column prop="loginTime" label="最后登录" min-width="100"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">是否启用</template>
-                <template slot-scope="scope">
+                <template #header>是否启用</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.status" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
 
             <el-table-column width="180" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="roleWay(scope.row)">分配角色</el-button>
                     <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
@@ -58,7 +58,7 @@
 
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -95,7 +95,7 @@
 
         <el-dialog
             title="分配角色"
-            :visible.sync="dialogRole"
+            v-model="dialogRole"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -140,10 +140,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -156,7 +156,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/admin/list',
+                url: '/sky/admin/list',
                 method: 'post',
                 params: params
             })
@@ -167,7 +167,7 @@ export default {
                         for (let index = 0; index < that.tableData.length; index++) {
                             let item = that.tableData[index];
                             item.download_url = item.icon;
-                            item.icon = process.env.core_url + '/sky' + item.icon;
+                            item.icon = '/sky' + item.icon;
                             if (item.status == 1) {
                                 item.status = true
                             } else {
@@ -194,7 +194,7 @@ export default {
                         status: value ? 1 : 0
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/admin/update',
+                        url: '/sky/admin/update',
                         method: 'post',
                         data: params
                     })
@@ -231,7 +231,7 @@ export default {
 
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/admin/delete/' + row.id,
+                        url: '/sky/admin/delete/' + row.id,
                         method: 'get',
                         params: params
                     })

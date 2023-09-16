@@ -20,8 +20,8 @@
             <el-table-column prop="productCount" label="商品数量" min-width="80"></el-table-column>
 
             <el-table-column width="180" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="goodsWay(scope.row)">商品列表</el-button>
                 </template>
             </el-table-column>
@@ -48,10 +48,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -67,7 +67,7 @@ export default {
                 flashPromotionId: that.$route.query.flashPromotionId
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/flashPromotionSession/status/count',
+                url: '/sky/flashPromotionSession/status/count',
                 method: 'get',
                 params: params
             })

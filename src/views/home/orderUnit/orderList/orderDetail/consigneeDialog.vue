@@ -2,7 +2,7 @@
     <section id="consignee">
         <el-dialog
             title="修改收货人信息"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="800px"
             :close-on-click-modal="false"
             >
@@ -92,7 +92,7 @@ export default {
             let that = this;
             let params = that.withForm;
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/update/receiverInfo',
+                url: '/sky/order/update/receiverInfo',
                 method: 'post',
                 data: params
             })

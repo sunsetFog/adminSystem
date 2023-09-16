@@ -2,7 +2,7 @@
     <section id="costDialog">
         <el-dialog
             title="修改费用信息"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="700px"
             :close-on-click-modal="false"
             >
@@ -12,7 +12,7 @@
                     <el-col :span="8">￥{{order_obj.totalAmount}}</el-col>
                     <el-col :span="4">运费:</el-col>
                     <el-col :span="8">
-                        <el-input v-model.number="moneyInfo.freightAmount" size="mini"><template slot="prepend">￥</template></el-input>
+                        <el-input v-model.number="moneyInfo.freightAmount" size="mini"><template #prepend>￥</template></el-input>
                     </el-col>
                 </el-row>
 
@@ -28,7 +28,7 @@
                     <el-col :span="8">-￥{{order_obj.promotionAmount}}</el-col>
                     <el-col :span="4">折扣金额:</el-col>
                     <el-col :span="8">
-                        <el-input v-model.number="moneyInfo.discountAmount" size="mini"><template slot="prepend">-￥</template></el-input>
+                        <el-input v-model.number="moneyInfo.discountAmount" size="mini"><template #prepend>-￥</template></el-input>
                     </el-col>
                 </el-row>
 
@@ -84,7 +84,7 @@ export default {
             let that = this;
             let params = that.moneyInfo;
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/update/moneyInfo',
+                url: '/sky/order/update/moneyInfo',
                 method: 'post',
                 data: params
             })

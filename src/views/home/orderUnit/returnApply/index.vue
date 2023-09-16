@@ -69,14 +69,14 @@
             <el-table-column prop="createTime" label="申请时间" min-width="120"></el-table-column>
             <el-table-column prop="memberUsername" label="用户账号" min-width="80"></el-table-column>
             <el-table-column label="退款金额" min-width="80">
-                <template slot-scope="scope">{{scope.row.productRealPrice*scope.row.productCount}}</template>
+                <template v-slot="scope">{{scope.row.productRealPrice*scope.row.productCount}}</template>
             </el-table-column>
             <el-table-column prop="statusLabel" label="申请状态" min-width="80"></el-table-column>
             <el-table-column prop="handleTime" label="处理时间" min-width="120"></el-table-column>
 
             <el-table-column width="100" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="detailsWay(scope.row)">查看详情</el-button>
                 </template>
             </el-table-column>
@@ -134,10 +134,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -159,7 +159,7 @@ export default {
             };
             params = { ...that.queryData, ...params };
             that.$apihttp({
-                url: process.env.core_url + '/sky/returnApply/list',
+                url: '/sky/returnApply/list',
                 method: 'post',
                 data: params
             })

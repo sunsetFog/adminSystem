@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -71,7 +71,7 @@ export default {
             let that = this;
             let params = that.withForm;
             that.$apihttp({
-                url: process.env.core_url + '/sky/returnReason/add',
+                url: '/sky/returnReason/add',
                 method: 'post',
                 data: params
             })
@@ -96,7 +96,7 @@ export default {
                 ...that.withForm
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/returnReason/update',
+                url: '/sky/returnReason/update',
                 method: 'post',
                 data: params
             })

@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             title="选择品牌"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="700px"
             :close-on-click-modal="false"
             >
@@ -11,7 +11,7 @@
                     <el-col :span="3">品牌名称:</el-col>
                     <el-col :span="11">
                         <el-input placeholder="" v-model="keyword">
-                            <el-button slot="append" icon="el-icon-search" @click="queryWay()"></el-button>
+                            <el-button #append icon="el-icon-search" @click="queryWay()"></el-button>
                         </el-input>
                     </el-col>
                 </el-row>
@@ -34,7 +34,7 @@
                     <el-table-column type="selection" :reserve-selection="true" width="60" align="center"></el-table-column>
                     <el-table-column prop="name" label="品牌名称" min-width="120"></el-table-column>
                     <el-table-column label="相关" min-width="220">
-                        <template slot-scope="scope">
+                        <template v-slot="scope">
                             商品：<span style="margin-right: 15px;">{{scope.row.productCount}}</span>
                             评价：<span>{{scope.row.productCommentCount}}</span>
                         </template>
@@ -82,7 +82,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/list',
+                url: '/sky/brand/list',
                 method: 'get',
                 params: params
             })
@@ -114,7 +114,7 @@ export default {
                 })
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeBrand/add',
+                url: '/sky/homeBrand/add',
                 method: 'post',
                 data: params
             })

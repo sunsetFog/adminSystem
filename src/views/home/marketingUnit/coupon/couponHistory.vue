@@ -70,15 +70,15 @@
             <el-table-column prop="couponCode" label="优惠码" min-width="120"></el-table-column>
             <el-table-column prop="memberNickname" label="领取会员" min-width="100"></el-table-column>
             <el-table-column label="领取方式" min-width="100">
-                <template slot-scope="scope">{{scope.row.getType | formatGetType}}</template>
+                <template v-slot="scope">{{scope.row.getType | formatGetType}}</template>
             </el-table-column>
             <el-table-column prop="createTime" label="领取时间" min-width="120"></el-table-column>
             <el-table-column label="当前状态" min-width="140">
-                <template slot-scope="scope">{{scope.row.useStatus | formatCouponHistoryUseType}}</template>
+                <template v-slot="scope">{{scope.row.useStatus | formatCouponHistoryUseType}}</template>
             </el-table-column>
             <el-table-column prop="useTime" label="使用时间" min-width="120"></el-table-column>
             <el-table-column label="订单编号" min-width="140">
-                <template slot-scope="scope">{{scope.row.orderSn===null?'N/A':scope.row.orderSn}}</template>
+                <template v-slot="scope">{{scope.row.orderSn===null?'N/A':scope.row.orderSn}}</template>
             </el-table-column>
         </el-table>
 
@@ -187,7 +187,7 @@ export default {
                 id: that.$route.query.id
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/coupon/row',
+                url: '/sky/coupon/row',
                 method: 'get',
                 params: params
             })
@@ -217,7 +217,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/couponHistory/list',
+                url: '/sky/couponHistory/list',
                 method: 'get',
                 params: params
             })

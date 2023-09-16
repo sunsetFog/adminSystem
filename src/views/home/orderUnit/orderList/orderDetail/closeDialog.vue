@@ -2,7 +2,7 @@
     <section id="closeDialog">
         <el-dialog
             title="关闭订单"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -55,7 +55,7 @@ export default {
                 note: that.withForm.note
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/update/close',
+                url: '/sky/order/update/close',
                 method: 'get',
                 params: params
             })

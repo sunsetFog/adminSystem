@@ -52,11 +52,12 @@ export default defineComponent({
     },
     mounted() {
         let that = this;
-        document.addEventListener('mouseup', function(e){
-            if(e.target.className.indexOf("el-tabs__item") == -1){
-                that.contextMenuVisible = false;
-            }
-        })
+        // document.addEventListener('mouseup', function(e: any){
+        //     console.log("--mouseup--", e)
+        //     if(e.target.className.indexOf("el-tabs__item") == -1){
+        //         that.contextMenuVisible = false;
+        //     }
+        // })
 
     },
     destroyed:function(){
@@ -83,7 +84,7 @@ export default defineComponent({
         openContextMenu(MouseEvent) {
             MouseEvent.preventDefault(); //防止默认菜单弹出
             console.log("鼠标右击事件", MouseEvent);
-            if(MouseEvent.target.className.indexOf("el-tabs__item") != -1){
+            if(MouseEvent.target.className && MouseEvent.target.className.indexOf("el-tabs__item") != -1){
                 this.clientX = MouseEvent.clientX;
                 this.clientY = MouseEvent.clientY + 10;
                 this.sign_key = MouseEvent.target.id.split("tab-")[1];

@@ -28,20 +28,20 @@
             <el-table-column prop="firstLetter" label="品牌首字母" min-width="80"></el-table-column>
             <el-table-column prop="sort" label="排序" min-width="50"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">品牌制造商</template>
-                <template slot-scope="scope">
+                <template #header>品牌制造商</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.factoryStatus" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">是否启用</template>
-                <template slot-scope="scope">
+                <template #header>是否启用</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.showStatus" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column min-width="120">
-                <template slot="header">相关</template>
-                <template slot-scope="scope">
+                <template #header>相关</template>
+                <template v-slot="scope">
                     商品：<span style="color: #409eff;">{{scope.row.productCount}}</span>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     评价：<span style="color: #409eff;">{{scope.row.productCommentCount}}</span>
@@ -49,8 +49,8 @@
             </el-table-column>
 
             <el-table-column width="150" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
                 </template>
@@ -63,7 +63,7 @@
 
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -128,10 +128,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -144,7 +144,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/list',
+                url: '/sky/brand/list',
                 method: 'get',
                 params: params
             })
@@ -165,9 +165,9 @@ export default {
                                 item.showStatus = false
                             }
                             item.download_url_logo = item.logo;
-                            item.logo = process.env.core_url + '/sky' + item.logo;
+                            item.logo = '/sky' + item.logo;
                             item.download_url_pic = item.bigPic;
-                            item.bigPic = process.env.core_url + '/sky' + item.bigPic;
+                            item.bigPic = '/sky' + item.bigPic;
                         }
                     }
                 })
@@ -187,7 +187,7 @@ export default {
 
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/brand/delete/' + row.id,
+                        url: '/sky/brand/delete/' + row.id,
                         method: 'get',
                         params: params
                     })

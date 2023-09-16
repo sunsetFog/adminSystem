@@ -19,8 +19,8 @@
             <el-table-column prop="paramCount" label="参数数量" min-width="100"></el-table-column>
 
             <el-table-column width="300" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="productAttrList(scope.row, 0)">属性列表</el-button>
                     <el-button type="text" @click="productAttrList(scope.row, 1)">参数列表</el-button>
                     <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
@@ -35,7 +35,7 @@
 
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -77,10 +77,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -92,7 +92,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/PmsProductAttributeCategory/list',
+                url: '/sky/PmsProductAttributeCategory/list',
                 method: 'get',
                 params: params
             })
@@ -121,7 +121,7 @@ export default {
 
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/PmsProductAttributeCategory/delete/' + row.id,
+                        url: '/sky/PmsProductAttributeCategory/delete/' + row.id,
                         method: 'get',
                         params: params
                     })

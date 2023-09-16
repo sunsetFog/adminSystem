@@ -50,20 +50,20 @@
             <el-table-column prop="id" label="编号" min-width="80"></el-table-column>
             <el-table-column prop="name" label="广告名称" min-width="120"></el-table-column>
             <el-table-column label="广告位置" min-width="120">
-                <template slot-scope="scope">{{scope.row.type | formatType}}</template>
+                <template v-slot="scope">{{scope.row.type | formatType}}</template>
             </el-table-column>
             <el-table-column label="广告图片" min-width="120">
-                <template slot-scope="scope"><img style="height: 50px" :src="scope.row.pic"></template>
+                <template v-slot="scope"><img style="height: 50px" :src="scope.row.pic"></template>
             </el-table-column>
             <el-table-column label="时间" min-width="220">
-                <template slot-scope="scope">
+                <template v-slot="scope">
                     <p>开始时间：{{scope.row.startTime}}</p>
                     <p>到期时间：{{scope.row.endTime}}</p>
                 </template>
             </el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">上线/下线</template>
-                <template slot-scope="scope">
+                <template #header>上线/下线</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="0" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
@@ -71,8 +71,8 @@
             <el-table-column prop="orderCount" label="生成订单" min-width="80"></el-table-column>
 
             <el-table-column width="100" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
                 </template>
@@ -129,10 +129,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -155,7 +155,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeAdvertise/list',
+                url: '/sky/homeAdvertise/list',
                 method: 'get',
                 params: params
             })
@@ -166,7 +166,7 @@ export default {
                         for (let index = 0; index < that.tableData.length; index++) {
                             let item = that.tableData[index];
                             item.download_url = item.pic;
-                            item.pic = process.env.core_url + '/sky' + item.pic;
+                            item.pic = '/sky' + item.pic;
                         }
                     }
                 })
@@ -188,7 +188,7 @@ export default {
                         status: value
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/homeAdvertise/update',
+                        url: '/sky/homeAdvertise/update',
                         method: 'post',
                         data: params
                     })
@@ -225,7 +225,7 @@ export default {
                         ids: row.id
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/homeAdvertise/delete',
+                        url: '/sky/homeAdvertise/delete',
                         method: 'get',
                         params: params
                     })

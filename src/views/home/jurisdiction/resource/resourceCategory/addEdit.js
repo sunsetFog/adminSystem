@@ -45,7 +45,7 @@ export default {
                 sort: that.addAndEditForm.sort
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/resourceCategory/add',
+                url: '/sky/resourceCategory/add',
                 method: 'post',
                 data: params
             })
@@ -71,7 +71,7 @@ export default {
                 sort: that.addAndEditForm.sort
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/resourceCategory/update',
+                url: '/sky/resourceCategory/update',
                 method: 'post',
                 data: params
             })

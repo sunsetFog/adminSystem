@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="800px"
             :close-on-click-modal="false"
             >
@@ -161,22 +161,22 @@
                                     style="width: 100%"
                                 >
                                     <el-table-column min-width="100">
-                                        <template slot="header">数量</template>
-                                        <template slot-scope="scope">
+                                        <template #header>数量</template>
+                                        <template v-slot="scope">
                                             <el-input v-model="scope.row.quantity" placeholder=""></el-input>
                                         </template>
                                     </el-table-column>
                                     <el-table-column min-width="100">
-                                        <template slot="header">折扣</template>
-                                        <template slot-scope="scope">
+                                        <template #header>折扣</template>
+                                        <template v-slot="scope">
                                             <el-input v-model="scope.row.discount" placeholder=""></el-input>
                                         </template>
                                     </el-table-column>
                                     <el-table-column width="180">
-                                        <template slot="header">
+                                        <template #header>
                                             操作：<el-button type="primary" @click="addLadderWay()">添加</el-button>
                                         </template>
-                                        <template slot-scope="scope">
+                                        <template v-slot="scope">
                                             
                                             <el-button type="text" @click="deleteLadderWay(scope)">删除</el-button>
                                         </template>
@@ -192,22 +192,22 @@
                                     style="width: 100%"
                                 >
                                     <el-table-column min-width="100">
-                                        <template slot="header">满</template>
-                                        <template slot-scope="scope">
+                                        <template #header>满</template>
+                                        <template v-slot="scope">
                                             <el-input v-model="scope.row.fullPrice" placeholder=""></el-input>
                                         </template>
                                     </el-table-column>
                                     <el-table-column min-width="100">
-                                        <template slot="header">立减</template>
-                                        <template slot-scope="scope">
+                                        <template #header>立减</template>
+                                        <template v-slot="scope">
                                             <el-input v-model="scope.row.reducePrice" placeholder=""></el-input>
                                         </template>
                                     </el-table-column>
                                     <el-table-column width="180">
-                                        <template slot="header">
+                                        <template #header>
                                             操作：<el-button type="primary" @click="addFullMinusWay()">添加</el-button>
                                         </template>
-                                        <template slot-scope="scope">
+                                        <template v-slot="scope">
                                             
                                             <el-button type="text" @click="deleteFullMinusWay(scope)">删除</el-button>
                                         </template>
@@ -397,7 +397,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/PmsProductAttributeCategory/list',
+                url: '/sky/PmsProductAttributeCategory/list',
                 method: 'get',
                 params: params
             })
@@ -426,7 +426,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/subject/list',
+                url: '/sky/subject/list',
                 method: 'get',
                 params: params
             })
@@ -445,7 +445,7 @@ export default {
 
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/prefrenceArea/list',
+                url: '/sky/prefrenceArea/list',
                 method: 'get',
                 params: params
             })
@@ -666,7 +666,7 @@ export default {
             let that = this;
             let params = that.paramsWay();
             that.$apihttp({
-                url: process.env.core_url + '/sky/product/add',
+                url: '/sky/product/add',
                 method: 'post',
                 data: params
             })
@@ -689,7 +689,7 @@ export default {
             let params = that.paramsWay();
             params.id = that.editSaveRow.id;
             that.$apihttp({
-                url: process.env.core_url + '/sky/product/update',
+                url: '/sky/product/update',
                 method: 'post',
                 data: params
             })

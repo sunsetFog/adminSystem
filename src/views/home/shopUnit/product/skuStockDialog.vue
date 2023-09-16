@@ -2,7 +2,7 @@
     <section id="skuStockDialog">
         <el-dialog
             title="编辑货品信息"
-            :visible.sync="dialogGoods"
+            v-model="dialogGoods"
             width="800px"
             :close-on-click-modal="false"
             >
@@ -13,7 +13,7 @@
                     <el-col :span="3">sku编号:</el-col>
                     <el-col :span="11">
                         <el-input placeholder="sku编号" v-model="sku_value">
-                            <el-button slot="append" icon="el-icon-search" @click="skuList()"></el-button>
+                            <el-button #append icon="el-icon-search" @click="skuList()"></el-button>
                         </el-input>
                     </el-col>
                 </el-row>
@@ -23,38 +23,38 @@
                     style="width: 100%"
                 >
                     <el-table-column min-width="120">
-                        <template slot="header">sku编号</template>
-                        <template slot-scope="scope">
+                        <template #header>sku编号</template>
+                        <template v-slot="scope">
                             <el-input v-model="scope.row.skuCode" placeholder="请输入内容"></el-input>
                         </template>
                     </el-table-column>
                     <el-table-column min-width="50">
-                        <template slot="header">颜色</template>
-                        <template slot-scope="scope">
+                        <template #header>颜色</template>
+                        <template v-slot="scope">
                             {{scope.row.spData[0].value}}
                         </template>
                     </el-table-column>
                     <el-table-column min-width="50">
-                        <template slot="header">容量</template>
-                        <template slot-scope="scope">
+                        <template #header>容量</template>
+                        <template v-slot="scope">
                             {{scope.row.spData[1].value}}
                         </template>
                     </el-table-column>
                     <el-table-column min-width="100">
-                        <template slot="header">销售价格</template>
-                        <template slot-scope="scope">
+                        <template #header>销售价格</template>
+                        <template v-slot="scope">
                             <el-input v-model="scope.row.price" placeholder="请输入内容"></el-input>
                         </template>
                     </el-table-column>
                     <el-table-column min-width="100">
-                        <template slot="header">商品库存</template>
-                        <template slot-scope="scope">
+                        <template #header>商品库存</template>
+                        <template v-slot="scope">
                             <el-input v-model="scope.row.stock" placeholder="请输入内容"></el-input>
                         </template>
                     </el-table-column>
                     <el-table-column min-width="100">
-                        <template slot="header">库存预警值</template>
-                        <template slot-scope="scope">
+                        <template #header>库存预警值</template>
+                        <template v-slot="scope">
                             <el-input v-model="scope.row.lowStock" placeholder="请输入内容"></el-input>
                         </template>
                     </el-table-column>
@@ -87,7 +87,7 @@ export default {
                 keyword: that.sku_value
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/sku/list/' +  that.save_goods.id,
+                url: '/sky/sku/list/' +  that.save_goods.id,
                 method: 'get',
                 params: params
             })
@@ -120,7 +120,7 @@ export default {
                 item.spData = JSON.stringify(item.spData);
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/sku/update/' +  that.save_goods.id,
+                url: '/sky/sku/update/' +  that.save_goods.id,
                 method: 'post',
                 data: arr
             })

@@ -72,7 +72,7 @@ export default {
             let that = this;
             let params = that.paramsWay();
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/add',
+                url: '/sky/brand/add',
                 method: 'post',
                 data: params
             })
@@ -95,7 +95,7 @@ export default {
             let params = that.paramsWay();
             params.id = that.editSaveRow.id;
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/update',
+                url: '/sky/brand/update',
                 method: 'post',
                 data: params
             })

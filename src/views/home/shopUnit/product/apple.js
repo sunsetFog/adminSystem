@@ -21,7 +21,7 @@ export default {
             let params = {
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/productCategory/treeList',
+                url: '/sky/productCategory/treeList',
                 method: 'get',
                 params: params
             })
@@ -50,7 +50,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/brand/list',
+                url: '/sky/brand/list',
                 method: 'get',
                 params: params
             })

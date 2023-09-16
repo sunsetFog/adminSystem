@@ -79,22 +79,22 @@
         >
             <el-table-column width="50" type="index" label="序号"></el-table-column>
             <el-table-column min-width="60">
-                <template slot="header">商品图片</template>
-                <template slot-scope="scope">
+                <template #header>商品图片</template>
+                <template v-slot="scope">
                     <previewPictures :photoList="[scope.row.pic]"></previewPictures>
                 </template>
             </el-table-column>
             <el-table-column prop="name" label="商品名称" min-width="100"></el-table-column>
             <el-table-column min-width="100">
-                <template slot="header">价格/货号</template>
-                <template slot-scope="scope">
+                <template #header>价格/货号</template>
+                <template v-slot="scope">
                     <div>价格: {{scope.row.price}}</div>
                     <div>货号: {{scope.row.productSn}}</div>
                 </template>
             </el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">标签</template>
-                <template slot-scope="scope">
+                <template #header>标签</template>
+                <template v-slot="scope">
                     <div>上架: <el-switch v-model="scope.row.status" @change="(val)=>{switchChange(val, scope.row)}"></el-switch></div>
                     <div>新品: <el-switch v-model="scope.row.status" @change="(val)=>{switchChange(val, scope.row)}"></el-switch></div>
                     <div>推荐: <el-switch v-model="scope.row.status" @change="(val)=>{switchChange(val, scope.row)}"></el-switch></div>
@@ -102,23 +102,23 @@
             </el-table-column>
             <el-table-column prop="sort" label="排序" min-width="60"></el-table-column>
             <el-table-column min-width="60">
-                <template slot="header">SKU库存</template>
-                <template slot-scope="scope">
+                <template #header>SKU库存</template>
+                <template v-slot="scope">
                     <i class="el-icon-edit" @click="skuStockShow(scope.row)"></i>
                 </template>
             </el-table-column>
             <el-table-column prop="sale" label="销量" min-width="60"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">审核状态</template>
-                <template slot-scope="scope">
+                <template #header>审核状态</template>
+                <template v-slot="scope">
                     <div>未审核</div>
                     <div>审核详情</div>
                 </template>
             </el-table-column>
 
             <el-table-column width="100" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
                 </template>
@@ -171,10 +171,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
-        this.tableHeight =
-            this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
+        // this.tableHeight =
+        //     this.$refs.refUnit.offsetHeight -
+        //     (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -208,7 +208,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/product/list',
+                url: '/sky/product/list',
                 method: 'post',
                 data: params
             })
@@ -219,7 +219,7 @@ export default {
                         for (let index = 0; index < that.tableData.length; index++) {
                             let item = that.tableData[index];
                             item.download_url = item.icon;
-                            item.icon = process.env.core_url + '/sky' + item.icon;
+                            item.icon = '/sky' + item.icon;
                             if (item.status == 1) {
                                 item.status = true
                             } else {
@@ -246,7 +246,7 @@ export default {
                         status: value ? 1 : 0
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/admin/update',
+                        url: '/sky/admin/update',
                         method: 'post',
                         data: params
                     })
@@ -283,7 +283,7 @@ export default {
                         ids: row.id
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/product/deleteStatus',
+                        url: '/sky/product/deleteStatus',
                         method: 'get',
                         params: params
                     })

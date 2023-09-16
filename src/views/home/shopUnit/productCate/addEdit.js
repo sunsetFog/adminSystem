@@ -39,7 +39,7 @@ export default {
             let params = {
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/PmsProductAttributeCategory/list/withAttr',
+                url: '/sky/PmsProductAttributeCategory/list/withAttr',
                 method: 'get',
                 params: params
             })
@@ -59,7 +59,7 @@ export default {
                 productCategoryId: row.id
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/product_category_attribute/list',
+                url: '/sky/product_category_attribute/list',
                 method: 'get',
                 params: params
             })
@@ -157,7 +157,7 @@ export default {
             let that = this;
             let params = that.paramsWay();
             that.$apihttp({
-                url: process.env.core_url + '/sky/productCategory/add',
+                url: '/sky/productCategory/add',
                 method: 'post',
                 data: params
             })
@@ -180,7 +180,7 @@ export default {
             let params = that.paramsWay();
             params.id = that.editSaveRow.id;
             that.$apihttp({
-                url: process.env.core_url + '/sky/productCategory/update',
+                url: '/sky/productCategory/update',
                 method: 'post',
                 data: params
             })

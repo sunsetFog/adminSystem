@@ -59,8 +59,8 @@
         <el-table-column prop="activityNo" label="活动编码" min-width="100">
         </el-table-column>
         <el-table-column min-width="150">
-          <template slot="header"> 活动标题 </template>
-          <template slot-scope="scope">
+          <template #header> 活动标题 </template>
+          <template v-slot="scope">
             <div class="endearment">
               <div
                 v-if="scope.row.tips == '1' || scope.row.tips == '1,2' || scope.row.tips == '2,1'"
@@ -83,28 +83,28 @@
         <el-table-column prop="communityName" label="平台类型" min-width="100">
         </el-table-column>
         <el-table-column min-width="180">
-          <template slot="header"> 移动入口/详情头部图 </template>
-          <template slot-scope="scope">
+          <template #header> 移动入口/详情头部图 </template>
+          <template v-slot="scope">
             <previewPictures :photoList="[scope.row.appIndexImg, scope.row.appHeadImg]"></previewPictures>
           </template>
         </el-table-column>
         <el-table-column min-width="180">
-          <template slot="header"> PC入口/详情头部图 </template>
-          <template slot-scope="scope">
+          <template #header> PC入口/详情头部图 </template>
+          <template v-slot="scope">
             <previewPictures :photoList="[scope.row.pcIndexImg, scope.row.pcHeadImg]"></previewPictures>
           </template>
         </el-table-column>
         <el-table-column min-width="100">
-          <template slot="header"> 状态 </template>
-          <template slot-scope="scope">
+          <template #header> 状态 </template>
+          <template v-slot="scope">
             <i-switch v-model="scope.row.status" @on-change="(val) => {
                   statusChange(val, scope.row);
                 }"></i-switch>
           </template>
         </el-table-column>
         <el-table-column min-width="120">
-          <template slot="header"> 客户端 </template>
-          <template slot-scope="scope">
+          <template #header> 客户端 </template>
+          <template v-slot="scope">
             <div v-if="scope.row.client == '2'">
               <span>PC</span>
             </div>
@@ -119,8 +119,8 @@
         <el-table-column prop="createUser" label="发布人" min-width="100">
         </el-table-column>
         <el-table-column width="120" fixed="right">
-          <template slot="header"> 操作 </template>
-          <template slot-scope="scope">
+          <template #header> 操作 </template>
+          <template v-slot="scope">
             <el-button
               type="text"
               size="small"
@@ -153,7 +153,7 @@
 
     <el-dialog
       :title="dialog_title"
-      :visible.sync="dialogVisible"
+      v-model="dialogVisible"
       width="900px"
       :before-close="handleClose"
       :close-on-click-modal="false"
@@ -401,7 +401,7 @@
       </div>
     </el-dialog>
 
-    <!-- <el-dialog title="修改排序" :visible.sync="dialogInfoTableSortNoVisible">
+    <!-- <el-dialog title="修改排序" v-model="dialogInfoTableSortNoVisible">
       <el-form :model="formAdd">
         <el-form-item label="排序值：" label-width="140px">
           <el-input placeholder="请输入排序值" type="number" v-model="sortNum">
@@ -634,7 +634,7 @@ export default {
     // 拖行排序
     rowDrop () {
         console.log('----xulie----', Sortable)
-        const tbody = this.$refs.xTable1.$el.querySelector('.el-table__body-wrapper tbody');
+        const tbody = this.$refs.xTable1.querySelector('.el-table__body-wrapper tbody');
         const _this = this;
         Sortable.create(tbody, {
           draggable: ".el-table__row",

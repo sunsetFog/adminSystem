@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -84,7 +84,7 @@ export default {
             let that = this;
             let params = that.withForm;
             that.$apihttp({
-                url: process.env.core_url + '/sky/flashPromotionSession/add',
+                url: '/sky/flashPromotionSession/add',
                 method: 'post',
                 data: params
             })
@@ -109,7 +109,7 @@ export default {
                 ...that.withForm
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/flashPromotionSession/update',
+                url: '/sky/flashPromotionSession/update',
                 method: 'post',
                 data: params
             })

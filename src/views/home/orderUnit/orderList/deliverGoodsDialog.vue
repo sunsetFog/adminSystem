@@ -2,7 +2,7 @@
     <section id="deliverGoodsDialog">
         <el-dialog
             title="订单发货"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="800px"
             :close-on-click-modal="false"
             >
@@ -75,7 +75,7 @@ export default {
                 deliverySn: that.order_obj.deliverySn
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/update/delivery',
+                url: '/sky/order/update/delivery',
                 method: 'post',
                 data: params
             })

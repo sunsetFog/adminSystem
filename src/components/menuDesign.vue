@@ -17,29 +17,27 @@
         <div v-for="(item,index) in menuList" :key="index+'w'">
             <!-- 第一级 -->
             <el-menu-item :index="item.key" v-if="item.children.length == 0">
-                <i class="el-icon-menu"></i>
+                <el-icon><Menu /></el-icon>
                 <span>{{item.title}}</span>
             </el-menu-item>
 
             <!-- el-menu-item的index绑定是@open事件的参数 -->
-            <el-submenu :index="'sign'+index" v-else>
-                <template slot="title">
-                    <i class="el-icon-menu"></i>
+            <el-sub-menu :index="'sign'+index" v-else>
+                <template #title>
+                    <el-icon><Menu /></el-icon>
                     <span>{{item.title}}</span>
                 </template>
-                <el-menu-item-group>
                     <!-- 
                         v-if="val.hidden != 1"
                      -->
-                    <div v-for="(val,ind) in item.children" :key="val.key">
+                    <!-- <div v-for="(val,ind) in item.children" :key="val.key"> -->
                         <!-- 第二级 -->
-                        <!-- el-submenu的index绑定是@select事件的参数,也是:default-active的参数 -->
-                        <el-menu-item :index="val.key">
+                        <!-- el-sub-menu的index绑定是@select事件的参数,也是:default-active的参数 -->
+                        <el-menu-item :index="val.key" v-for="(val,ind) in item.children" :key="val.key">
                             <div style="width: 100%;height: 100%;text-indent: 25px;">{{val.title}}</div>
                         </el-menu-item>
-                    </div>
-                </el-menu-item-group>
-            </el-submenu>
+                    <!-- </div> -->
+            </el-sub-menu>
         </div>
         </el-menu>
 
@@ -130,16 +128,16 @@ export default defineComponent({
 <style lang="less" scoped>
 #menuDesign {
     height: calc(100% - 50px);
-    /deep/.el-scrollbar__wrap{
-        overflow-x: hidden !important;
-    }
-    /*水平折叠收起菜单,隐藏文字和标签*/
-    /deep/.el-menu--collapse span {
-      display: none;
-    }
-    /deep/.el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
-        display: none;
-    }
+    // /deep/.el-scrollbar__wrap{
+    //     overflow-x: hidden !important;
+    // }
+    // /*水平折叠收起菜单,隐藏文字和标签*/
+    // /deep/.el-menu--collapse span {
+    //   display: none;
+    // }
+    // /deep/.el-menu--collapse .el-sub-menu__title .el-sub-menu__icon-arrow {
+    //     display: none;
+    // }
 }
 </style>
 

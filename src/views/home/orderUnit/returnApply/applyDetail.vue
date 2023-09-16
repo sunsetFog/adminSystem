@@ -8,30 +8,30 @@
             ref="refTable"
         >
             <el-table-column label="商品图片" min-width="80">
-                <template slot-scope="scope">
+                <template v-slot="scope">
                     <img style="height:80px" :src="scope.row.productPic">
                 </template>
             </el-table-column>
             <el-table-column label="商品名称" min-width="110">
-                <template slot-scope="scope">
+                <template v-slot="scope">
                     <span>{{scope.row.productName}}</span><br>
                     <span>品牌：{{scope.row.productBrand}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="价格/货号" min-width="100">
-                <template slot-scope="scope">
+                <template v-slot="scope">
                     <span>价格：￥{{scope.row.productRealPrice}}</span><br>
                     <span>货号：NO.{{scope.row.productId}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="属性" min-width="110">
-                <template slot-scope="scope">{{scope.row.productAttr}}</template>
+                <template v-slot="scope">{{scope.row.productAttr}}</template>
             </el-table-column>
             <el-table-column label="数量" min-width="60">
-                <template slot-scope="scope">{{scope.row.productCount}}</template>
+                <template v-slot="scope">{{scope.row.productCount}}</template>
             </el-table-column>
             <el-table-column label="小计" min-width="80">
-                <template slot-scope="scope">￥{{scope.row.productRealPrice * scope.row.productCount}}</template>
+                <template v-slot="scope">￥{{scope.row.productRealPrice * scope.row.productCount}}</template>
             </el-table-column>
         </el-table>
         <div class="title-box">服务单信息</div>
@@ -199,7 +199,7 @@ export default {
             let params = {
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/returnApply/details/' + that.$route.query.id,
+                url: '/sky/returnApply/details/' + that.$route.query.id,
                 method: 'get',
                 params: params
             })
@@ -223,7 +223,7 @@ export default {
             let params = {
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/companyAddress/list',
+                url: '/sky/companyAddress/list',
                 method: 'get',
                 params: params
             })
@@ -249,7 +249,7 @@ export default {
                 status: status
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/returnApply/update/status',
+                url: '/sky/returnApply/update/status',
                 method: 'post',
                 data: params
             })

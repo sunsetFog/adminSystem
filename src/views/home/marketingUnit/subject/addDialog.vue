@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             title="选择专题"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="700px"
             :close-on-click-modal="false"
             >
@@ -11,7 +11,7 @@
                     <el-col :span="3">专题名称:</el-col>
                     <el-col :span="11">
                         <el-input placeholder="" v-model="keyword">
-                            <el-button slot="append" icon="el-icon-search" @click="queryWay()"></el-button>
+                            <el-button #append icon="el-icon-search" @click="queryWay()"></el-button>
                         </el-input>
                     </el-col>
                 </el-row>
@@ -76,7 +76,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/subject/list',
+                url: '/sky/subject/list',
                 method: 'get',
                 params: params
             })
@@ -108,7 +108,7 @@ export default {
                 })
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeRecommendSubject/add',
+                url: '/sky/homeRecommendSubject/add',
                 method: 'post',
                 data: params
             })

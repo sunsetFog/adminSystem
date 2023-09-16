@@ -41,27 +41,27 @@
             <el-table-column prop="levelName" label="级数" min-width="80"></el-table-column>
             <el-table-column prop="name" label="路由名称" min-width="80"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">图标</template>
-                <template slot-scope="scope">
+                <template #header>图标</template>
+                <template v-slot="scope">
                     <!-- <i :class="scope.row.icon"></i> -->
                 </template>
             </el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">菜单隐藏</template>
-                <template slot-scope="scope">
+                <template #header>菜单隐藏</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.hidden" :active-value="1" :inactive-value="0" @change="(val)=>{switchChange(val, scope.row, 'hidden')}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">是否缓存</template>
-                <template slot-scope="scope">
+                <template #header>是否缓存</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.cache" :active-value="1" :inactive-value="0" @change="(val)=>{switchChange(val, scope.row, 'cache')}"></el-switch>
                 </template>
             </el-table-column>
 
             <el-table-column width="100" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
                     <el-button type="text" :disabled="scope.row.children.length != 0" @click="deleteWay(scope.row)">删除</el-button>
                 </template>
@@ -74,7 +74,7 @@
 
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -164,10 +164,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 1);
+            (this.$refs.refHeader.offsetHeight + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -193,7 +193,7 @@ export default {
                 subject: that.queryData.subject
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/menu/treeMenu',
+                url: '/sky/menu/treeMenu',
                 method: 'get',
                 params: params
             })
@@ -226,7 +226,7 @@ export default {
                 subject: that.queryData.subject
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/menu/treeRouter',
+                url: '/sky/menu/treeRouter',
                 method: 'get',
                 params: params
             })
@@ -296,7 +296,7 @@ export default {
                         [key]: value
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/menu/update',
+                        url: '/sky/menu/update',
                         method: 'post',
                         data: params
                     })
@@ -355,7 +355,7 @@ export default {
                         ids: that.id_list.join(",")
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/menu/delete',
+                        url: '/sky/menu/delete',
                         method: 'get',
                         params: params
                     })

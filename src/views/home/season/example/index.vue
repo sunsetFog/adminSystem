@@ -1,6 +1,6 @@
 <template>
-  <section id="exampleUnit" ref="refUnit">
-    <section class="header-box" ref="refHeader">
+  <section id="exampleUnit">
+    <section class="header-box">
       <el-input v-model="queryData.isName" placeholder="请输入内容" style="width: 200px;"></el-input>
       <el-button type="primary" @click="addWay('新建用户')">添加</el-button>
       <!-- 
@@ -10,29 +10,27 @@
       <el-button type="primary" size="small" icon="el-icon-search" @click="queryWay">搜索</el-button>
     </section>
     <!-- 
-        1.table的滚动条是height值影响的
+        1.table的滚动条是height值影响的    
         2.要是table在mouted生命周期不重新渲染了，强制刷新渲染也没用，那么用v-if="tableHeight != 0"控制渲染延后
     -->
     <el-table
       :data="tableData"
       border
       style="width: 100%"
-      v-if="tableHeight != 0"
-      :height="tableHeight"
-      ref="refTable"
+      :height="600"
     >
       <el-table-column width="50" type="index" label="序号"></el-table-column>
       <el-table-column prop="name" label="商品名" min-width="120"></el-table-column>
       <el-table-column min-width="1080">
-        <template slot="header">商品图片</template>
-        <template slot-scope="scope">
+        <template #header>商品图片</template>
+        <template v-slot="scope">
           <previewPictures :photoList="[scope.row.imgUrl]"></previewPictures>
         </template>
       </el-table-column>
 
       <el-table-column width="120" fixed="right">
-        <template slot="header">操作</template>
-        <template slot-scope="scope">
+        <template #header>操作</template>
+        <template v-slot="scope">
           <el-button type="text" @click="editWay('编辑用户', scope.row)">编辑</el-button>
           <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
         </template>
@@ -43,7 +41,7 @@
 
     <el-dialog
       :title="dialog_title"
-      :visible.sync="dialogVisible"
+      v-model="dialogVisible"
       width="500px"
       :close-on-click-modal="false"
     >
@@ -66,8 +64,10 @@
 </template>
 
 <script>
-
-export default {
+import {
+    defineComponent,
+} from "vue";
+export default defineComponent({
     name: 'exampleUnit',
     data() {
         return {
@@ -83,22 +83,13 @@ export default {
             rules: {},
             tableData: [],
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
-            tableHeight: 0,
         };
     },
     created() {
         this.queryWay();
     },
     mounted() {
-        console.log('--tableHeight-111-', this.$refs.refUnit.offsetHeight);
-        console.log('--tableHeight-222-', this.$refs.refHeader.offsetHeight);
-        console.log('--$el指向模板根标签--', this.$refs.refPage.$el.offsetHeight);
-        this.tableHeight =
-            this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.offsetHeight + this.$refs.refPage.$el.offsetHeight + 1);
-        console.log('--tableHeight--', this.tableHeight);
-        // this.$refs.refTable.doLayout()
-        // this.$forceUpdate();
+
     },
     methods: {
         queryWay() {
@@ -109,18 +100,18 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/shop/list',
+                url: '/sky/shop/list',
                 method: 'post',
                 params: params
             })
                 .then(res => {
                     if (res.code == '200') {
                         that.pagingObj.total = res.data.totalSize;
-                        that.tableData = res.data.content;
+                        that.tableData = res.data.content || [];
                         for (let index = 0; index < that.tableData.length; index++) {
                             let item = that.tableData[index];
                             item.download_url = item.imgUrl;
-                            item.imgUrl = process.env.core_url + '/sky/' + item.imgUrl;
+                            item.imgUrl = '/sky/' + item.imgUrl;
                         }
                     }
                 })
@@ -137,6 +128,7 @@ export default {
             let that = this;
             that.ruleForm.id = row.id || null;
             that.ruleForm.tradeName = row.name || '';
+            
             that.$nextTick(function() {
                 that.$refs.refUpload.download_url = row.download_url || '';
                 that.$refs.refUpload.imageUrl = row.imgUrl || '';
@@ -146,6 +138,7 @@ export default {
             this.dialog_title = value;
             this.dialogVisible = true;
             this.initForm(row);
+            console.log("---editWay---", this.dialogVisible)
         },
         deleteWay(row) {
             let that = this;
@@ -159,7 +152,7 @@ export default {
                         id: row.id,
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/shop/delete',
+                        url: '/sky/shop/delete',
                         method: 'get',
                         params: params,
                     })
@@ -195,7 +188,7 @@ export default {
                     imgUrl: that.$refs.refUpload.download_url,
                 };
                 that.$apihttp({
-                    url: process.env.core_url + '/sky/shop/add',
+                    url: '/sky/shop/add',
                     method: 'post',
                     data: params,
                 })
@@ -221,7 +214,7 @@ export default {
                     imgUrl: that.$refs.refUpload.download_url,
                 };
                 that.$apihttp({
-                    url: process.env.core_url + '/sky/shop/update',
+                    url: '/sky/shop/update',
                     method: 'post',
                     data: params,
                 })
@@ -241,7 +234,8 @@ export default {
             }
         },
     },
-};
+});
+
 </script>
 
 <style lang="less" scoped>

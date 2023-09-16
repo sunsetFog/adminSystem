@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="800px"
             :close-on-click-modal="false"
             >
@@ -36,18 +36,18 @@
                     </el-form-item>
                     <el-form-item label="面额:" prop="amount">
                         <el-input v-model.number="withForm.amount" placeholder="面值只能是数值，限2位小数">
-                            <template slot="append">元</template>
+                            <template #append>元</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="每人限领:">
                         <el-input v-model="withForm.perLimit" placeholder="只能输入正整数">
-                            <template slot="append">张</template>
+                            <template #append>张</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="使用门槛：" prop="minPoint">
                         <el-input v-model.number="withForm.minPoint" placeholder="只能输入正整数">
-                        <template slot="prepend">满</template>
-                        <template slot="append">元可用</template>
+                        <template #prepend>满</template>
+                        <template #append>元可用</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="领取日期：" prop="enableTime">
@@ -81,10 +81,10 @@
                                 style="width: 100%;margin-top: 20px"
                                 border>
                             <el-table-column label="分类名称" align="center">
-                                <template slot-scope="scope">{{scope.row.parentCategoryName}}>{{scope.row.productCategoryName}}</template>
+                                <template v-slot="scope">{{scope.row.parentCategoryName}}>{{scope.row.productCategoryName}}</template>
                             </el-table-column>
                             <el-table-column label="操作" align="center" width="100">
-                                <template slot-scope="scope">
+                                <template v-slot="scope">
                                 <el-button type="text" @click="deleteCategory(scope.$index, scope.row)">删除</el-button>
                                 </template>
                             </el-table-column>
@@ -117,13 +117,13 @@
                             style="width: 100%;margin-top: 20px"
                             border>
                                 <el-table-column label="商品名称" align="center">
-                                    <template slot-scope="scope">{{scope.row.productName}}</template>
+                                    <template v-slot="scope">{{scope.row.productName}}</template>
                                 </el-table-column>
                                 <el-table-column label="货号" align="center"  width="120" >
-                                    <template slot-scope="scope">NO.{{scope.row.productSn}}</template>
+                                    <template v-slot="scope">NO.{{scope.row.productSn}}</template>
                                 </el-table-column>
                                 <el-table-column label="操作" align="center" width="100">
-                                    <template slot-scope="scope">
+                                    <template v-slot="scope">
                                     <el-button type="text" @click="deleteProduct(scope.$index, scope.row)">删除</el-button>
                                     </template>
                                 </el-table-column>
@@ -260,7 +260,7 @@ export default {
             };
             that.loading = true
             that.$apihttp({
-                url: process.env.core_url + '/sky/product/list',
+                url: '/sky/product/list',
                 method: 'post',
                 data: params
             })
@@ -320,7 +320,7 @@ export default {
             let params = {
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/productCategory/treeList',
+                url: '/sky/productCategory/treeList',
                 method: 'get',
                 params: params
             })
@@ -383,7 +383,7 @@ export default {
             let that = this;
             let params = that.paramsWay();
             that.$apihttp({
-                url: process.env.core_url + '/sky/coupon/add',
+                url: '/sky/coupon/add',
                 method: 'post',
                 data: params
             })
@@ -406,7 +406,7 @@ export default {
             let params = that.paramsWay();
             params.id = that.save_row.id;
             that.$apihttp({
-                url: process.env.core_url + '/sky/coupon/update',
+                url: '/sky/coupon/update',
                 method: 'post',
                 data: params
             })

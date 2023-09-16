@@ -39,30 +39,30 @@
             <el-table-column prop="id" label="编号" min-width="80"></el-table-column>
             <el-table-column prop="name" label="优惠劵名称" min-width="140"></el-table-column>
             <el-table-column label="优惠券类型" min-width="100">
-                <template slot-scope="scope">{{scope.row.typeLabel}}</template>
+                <template v-slot="scope">{{scope.row.typeLabel}}</template>
             </el-table-column>
             <el-table-column label="可使用商品" min-width="100">
-                <template slot-scope="scope">{{scope.row.useType | formatUseType}}</template>
+                <template v-slot="scope">{{scope.row.useType | formatUseType}}</template>
             </el-table-column>
             <el-table-column label="使用门槛" min-width="120">
-                <template slot-scope="scope">满{{scope.row.minPoint}}元可用</template>
+                <template v-slot="scope">满{{scope.row.minPoint}}元可用</template>
             </el-table-column>
             <el-table-column label="面值" min-width="100">
-                <template slot-scope="scope">{{scope.row.amount}}元</template>
+                <template v-slot="scope">{{scope.row.amount}}元</template>
             </el-table-column>
             <el-table-column label="适用平台" min-width="100">
-                <template slot-scope="scope">{{scope.row.platform | formatPlatform}}</template>
+                <template v-slot="scope">{{scope.row.platform | formatPlatform}}</template>
             </el-table-column>
             <el-table-column label="有效期" min-width="170">
-                <template slot-scope="scope">{{scope.row.startTime}}至{{scope.row.endTime}}</template>
+                <template v-slot="scope">{{scope.row.startTime}}至{{scope.row.endTime}}</template>
             </el-table-column>
             <el-table-column label="状态" min-width="100">
-                <template slot-scope="scope">{{scope.row.endTime | formatStatus}}</template>
+                <template v-slot="scope">{{scope.row.endTime | formatStatus}}</template>
             </el-table-column>
 
             <el-table-column width="150" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="detailsWay(scope.row)">领取详情</el-button>
                     <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
@@ -147,10 +147,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -177,7 +177,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/coupon/list',
+                url: '/sky/coupon/list',
                 method: 'get',
                 params: params
             })
@@ -212,7 +212,7 @@ export default {
 
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/coupon/delete/' + row.id,
+                        url: '/sky/coupon/delete/' + row.id,
                         method: 'get',
                         params: params
                     })

@@ -2,7 +2,7 @@
     <section id="followUpDialog">
         <el-dialog
             title="订单跟踪"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >

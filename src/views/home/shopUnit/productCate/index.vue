@@ -16,22 +16,22 @@
             <el-table-column prop="productCount" label="商品数量" min-width="100"></el-table-column>
             <el-table-column prop="productUnit" label="数量单位" min-width="80"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">导航栏</template>
-                <template slot-scope="scope">
+                <template #header>导航栏</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.navStatus" @change="(val)=>{switchChange1(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">是否显示</template>
-                <template slot-scope="scope">
+                <template #header>是否显示</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.showStatus" @change="(val)=>{switchChange2(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column prop="sort" label="排序" min-width="50"></el-table-column>
 
             <el-table-column width="180" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="levelWay(scope.row.id)" v-if="queryData.parentId == 0">设置下级</el-button>
                     <el-button type="text" @click="levelWay(0)" v-else>返回上级</el-button>
                     <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
@@ -46,7 +46,7 @@
 
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -127,10 +127,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -143,7 +143,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/productCategory/list',
+                url: '/sky/productCategory/list',
                 method: 'get',
                 params: params
             })
@@ -156,7 +156,7 @@ export default {
                         that.tableData = res.data.content;
                         for (let index = 0; index < that.tableData.length; index++) {
                             let item = that.tableData[index];
-                            item.icon = process.env.core_url + '/sky' + item.icon;
+                            item.icon = '/sky' + item.icon;
                             if(item.level == 0) {
                                 item.levelName = "一级"
                             } else if (item.level == 1) {
@@ -194,7 +194,7 @@ export default {
                         showStatus: row.showStatus ? 1 : 0
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/productCategory/status',
+                        url: '/sky/productCategory/status',
                         method: 'get',
                         params: params
                     })
@@ -234,7 +234,7 @@ export default {
                         showStatus: value ? 1 : 0
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/productCategory/status',
+                        url: '/sky/productCategory/status',
                         method: 'get',
                         params: params
                     })
@@ -271,7 +271,7 @@ export default {
 
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/productCategory/delete/' + row.id,
+                        url: '/sky/productCategory/delete/' + row.id,
                         method: 'get',
                         params: params
                     })

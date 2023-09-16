@@ -2,7 +2,7 @@
     <section id="addDialog">
         <el-dialog
             title="选择商品"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="700px"
             :close-on-click-modal="false"
             >
@@ -11,7 +11,7 @@
                     <el-col :span="3">商品名称:</el-col>
                     <el-col :span="11">
                         <el-input placeholder="" v-model="keyword">
-                            <el-button slot="append" icon="el-icon-search" @click="queryWay()"></el-button>
+                            <el-button #append icon="el-icon-search" @click="queryWay()"></el-button>
                         </el-input>
                     </el-col>
                 </el-row>
@@ -32,10 +32,10 @@
                     <el-table-column type="selection" :reserve-selection="true" width="60" align="center"></el-table-column>
                     <el-table-column prop="name" label="商品名称" min-width="120"></el-table-column>
                     <el-table-column label="货号" min-width="100">
-                        <template slot-scope="scope">NO.{{scope.row.productSn}}</template>
+                        <template v-slot="scope">NO.{{scope.row.productSn}}</template>
                     </el-table-column>
                     <el-table-column label="价格" min-width="100">
-                        <template slot-scope="scope">￥{{scope.row.price}}</template>
+                        <template v-slot="scope">￥{{scope.row.price}}</template>
                     </el-table-column>
                 </el-table>
                 <pagination :pagingObj="pagingObj" @emitWay="queryWay"></pagination>
@@ -88,7 +88,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/product/list',
+                url: '/sky/product/list',
                 method: 'post',
                 data: params
             })
@@ -121,7 +121,7 @@ export default {
                 })
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/flashPromotionProductRelation/add',
+                url: '/sky/flashPromotionProductRelation/add',
                 method: 'post',
                 data: params
             })
@@ -150,7 +150,7 @@ export default {
                 })
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeNewProduct/add',
+                url: '/sky/homeNewProduct/add',
                 method: 'post',
                 data: params
             })
@@ -179,7 +179,7 @@ export default {
                 })
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeRecommendProduct/add',
+                url: '/sky/homeRecommendProduct/add',
                 method: 'post',
                 data: params
             })

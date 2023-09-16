@@ -21,7 +21,7 @@
                     </el-col>
                 </el-row>
             </el-form>
-            <el-button type="primary" slot="apple" @click="addWay">选择品牌</el-button>
+            <el-button type="primary" #apple @click="addWay">选择品牌</el-button>
         </searchDesign>
         <!-- 
             1.table的滚动条是height值影响的
@@ -38,19 +38,19 @@
             <el-table-column prop="id" label="编号" min-width="80"></el-table-column>
             <el-table-column prop="brandName" label="品牌名称" min-width="120"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">是否推荐</template>
-                <template slot-scope="scope">
+                <template #header>是否推荐</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.recommendStatus" :active-value="1" :inactive-value="0" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column prop="sort" label="排序" min-width="60"></el-table-column>
             <el-table-column label="状态" min-width="100">
-                <template slot-scope="scope">{{scope.row.recommendStatus | formatRecommendStatus}}</template>
+                <template v-slot="scope">{{scope.row.recommendStatus | formatRecommendStatus}}</template>
             </el-table-column>
 
             <el-table-column width="150" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="sortWay(scope.row)">设置排序</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
                 </template>
@@ -107,11 +107,13 @@ export default {
         this.queryWay();
     },
     mounted() {
-        console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refUnit-', this.$refs.refUnit);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader);
+        // console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
+        // console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -136,7 +138,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/homeBrand/list',
+                url: '/sky/homeBrand/list',
                 method: 'get',
                 params: params
             })
@@ -167,7 +169,7 @@ export default {
                         recommendStatus: value
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/homeBrand/update',
+                        url: '/sky/homeBrand/update',
                         method: 'post',
                         data: params
                     })
@@ -204,7 +206,7 @@ export default {
                         ids: row.id
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/homeBrand/delete',
+                        url: '/sky/homeBrand/delete',
                         method: 'get',
                         params: params
                     })

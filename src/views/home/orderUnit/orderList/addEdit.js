@@ -42,7 +42,7 @@ export default {
                 name: that.addAndEditForm.name
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/PmsProductAttributeCategory/add',
+                url: '/sky/PmsProductAttributeCategory/add',
                 method: 'post',
                 data: params
             })
@@ -67,7 +67,7 @@ export default {
                 name: that.addAndEditForm.name
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/PmsProductAttributeCategory/update',
+                url: '/sky/PmsProductAttributeCategory/update',
                 method: 'post',
                 data: params
             })

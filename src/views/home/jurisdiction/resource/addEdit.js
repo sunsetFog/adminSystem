@@ -51,7 +51,7 @@ export default {
                 description: that.addAndEditForm.description
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/resource/add',
+                url: '/sky/resource/add',
                 method: 'post',
                 data: params
             })
@@ -79,7 +79,7 @@ export default {
                 description: that.addAndEditForm.description
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/resource/update',
+                url: '/sky/resource/update',
                 method: 'post',
                 data: params
             })

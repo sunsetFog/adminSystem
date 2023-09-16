@@ -41,7 +41,7 @@ export default {
 
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/resourceCategory/list',
+                url: '/sky/resourceCategory/list',
                 method: 'get',
                 params: params
             })
@@ -62,7 +62,7 @@ export default {
 
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/role_resource/listResource/'+that.$route.query.roleId,
+                url: '/sky/role_resource/listResource/'+that.$route.query.roleId,
                 method: 'get',
                 params: params
             })
@@ -87,7 +87,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/resource/list',
+                url: '/sky/resource/list',
                 method: 'get',
                 params: params
             })
@@ -197,7 +197,7 @@ export default {
                 resourceIds: arr.join(",")
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/role_resource/deleteAdd',
+                url: '/sky/role_resource/deleteAdd',
                 method: 'get',
                 params: params
             })

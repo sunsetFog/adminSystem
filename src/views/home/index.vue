@@ -85,7 +85,7 @@ export default defineComponent({
             let that = this;
             let params = {};
             that.$apihttp({
-                url: process.env.core_url + '/sky/user/logout',
+                url: '/sky/user/logout',
                 method: 'get',
                 data: params
             })

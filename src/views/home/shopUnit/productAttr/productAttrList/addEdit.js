@@ -31,7 +31,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/PmsProductAttributeCategory/list',
+                url: '/sky/PmsProductAttributeCategory/list',
                 method: 'get',
                 params: params
             })
@@ -98,7 +98,7 @@ export default {
             let that = this;
             let params = that.paramsWay()
             that.$apihttp({
-                url: process.env.core_url + '/sky/productAttribute/add',
+                url: '/sky/productAttribute/add',
                 method: 'post',
                 data: params
             })
@@ -121,7 +121,7 @@ export default {
             let params = that.paramsWay()
             params.id = that.editSaveRow.id
             that.$apihttp({
-                url: process.env.core_url + '/sky/productAttribute/update',
+                url: '/sky/productAttribute/update',
                 method: 'post',
                 data: params
             })

@@ -87,8 +87,8 @@
             <el-table-column prop="status2" label="订单状态" min-width="60"></el-table-column>
 
             <el-table-column width="150" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="orderDetail(scope.row)">查看订单</el-button>
                     <el-button v-show="scope.row.status == 0" type="text" @click="closeWay(scope.row)">关闭订单</el-button>
                     <el-button v-show="scope.row.status == 1" type="text" @click="goodsWay(scope.row)">订单发货</el-button>
@@ -106,7 +106,7 @@
 
         <el-dialog
             :title="dialog_title"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -199,10 +199,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -240,7 +240,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/list',
+                url: '/sky/order/list',
                 method: 'post',
                 data: params
             })
@@ -296,7 +296,7 @@ export default {
                         deleteStatus: 1
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/order/deleteStatus',
+                        url: '/sky/order/deleteStatus',
                         method: 'get',
                         params: params
                     })

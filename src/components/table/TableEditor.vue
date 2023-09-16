@@ -39,7 +39,7 @@
             :show-overflow-tooltip="true"
           >
             <!-- 表头 -->
-            <template slot-scope="scope" slot="header">
+            <template #header>
               <span
                 v-if="col.rule && col.rule.required === true"
                 style="color:red;margin-right:2px;"
@@ -57,7 +57,7 @@
               <filter-column :col="col" :queryData="filterColumnData" :onQuery="filterColumnQuery"></filter-column>
             </template>
            <!-- 表体 -->
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <!-- 自定义slot插槽 -->
               <slot name="tableBody" :lyItem="scope"></slot>
               <!-- 自定义组件 -->
@@ -177,11 +177,11 @@
         <!-- 操作2：slot插槽 -->
         <el-table-column v-if="showOperation" width="90" align="center">
           <!-- 表头 -->
-          <template slot-scope="scope" slot="header">
+          <template #header>
               操作
           </template>
           <!-- 表体 -->
-          <template slot-scope="scope">
+          <template v-slot="scope">
               <slot name="operationBody" :lyItem="scope"></slot>
           </template>
         </el-table-column>
@@ -306,24 +306,24 @@ export default {
         pageSize: 15,
         totalPage: 2,
         list: [
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
-          { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
-          { sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" }
+          // { sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 2, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 3, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 4, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 5, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 6, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 7, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 8, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 9, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 10, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 11, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 12, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 13, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 14, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 15, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 16, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" },
+          // { id: 17, sex: '男', address: "信宜市东镇镇介可路", date: "2016-05-02 ~ 2016-05-06", country: "中国", province: "广东", Operation: "操作" },
+          // { id: 18, sex: '女', address: "上海市普陀区金沙江路", date: "2017-08-16 ~ 2017-08-20", country: "中国", province: "上海", Operation: "操作" }
         ]
       };
       let list = data.list.slice((this.queryData.pageNum-1)*this.queryData.pageSize,this.queryData.pageNum*this.queryData.pageSize)
@@ -350,28 +350,35 @@ export default {
     // 行单击事件-----操作___editting的true或false
     rowClick(row) {
       if (this.rowEditType === "CLICK") {
-        row.___editting = true;
         for (const item of this.tableData) {
-          if (item !== row) {
             item.___editting = false;
-          }
         }
+        this.tableData[this.takeIndex(row)].___editting = true;
       } else if (this.rowEditType === "CLICK_ALL") {
-        row.___editting = true;
+        this.tableData[this.takeIndex(row)].___editting = true;
       }
       this.$emit("row-click", row);
+    },
+    takeIndex(row) {
+      for (let i = 0; i < this.tableData.length; i++) {
+        const item = this.tableData[i];
+        if(item.id == row.id) {
+          return i;
+        }
+      }
     },
     // 行双击事件
     rowDblclick(row) {
       if (this.rowEditType === "DBLCLICK") {
-        this.$set(row, "___editting", true);
         for (const item of this.tableData) {
-          if (item !== row) {
-            this.$set(item, "___editting", false);
-          }
+            item.___editting = false;
         }
+        this.tableData[this.takeIndex(row)].___editting = true;
+        // row.___editting = true;
+        // this.$set(row, "___editting", true);
       } else if (this.rowEditType === "DBLCLICK_ALL") {
-        this.$set(row, "___editting", true);
+        this.tableData[this.takeIndex(row)].___editting = true;
+        // this.$set(row, "___editting", true);
       }
       this.$emit("row-dblclick", row);
     },
@@ -418,14 +425,16 @@ export default {
 
       if (this.rowEditType === "CLICK" || this.rowEditType === "DBLCLICK") {
         for (const item of this.tableData) {
-          this.$set(item, "___editting", false);
+          item.___editting = false;
+          // this.$set(item, "___editting", false);
         }
       }
       // this.tableData[0].___editting = true
       // console.log('tableData=--',this.tableData)
       this.currentRow = this.tableData[0];
       if (this.currentRow) {
-        this.$set(this.currentRow, "___editting", true);
+        this.currentRow.___editting = true;
+        // this.$set(this.currentRow, "___editting", true);
       }
 
       this.$nextTick(() => {
@@ -510,7 +519,8 @@ export default {
     updateFilterColumnData(){
         this.clearFilterColumnData()
         Object.keys(this.queryData).forEach(key=>{
-            this.$set(this.filterColumnData, key, this.queryData[key])
+          this.filterColumnData[key] = this.queryData[key];
+            // this.$set(this.filterColumnData, key, this.queryData[key])
         })
     }
   },

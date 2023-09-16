@@ -44,7 +44,7 @@ export default {
                 subject: 'crm'
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/menu/treeMenu',
+                url: '/sky/menu/treeMenu',
                 method: 'get',
                 params: params
             })
@@ -64,7 +64,7 @@ export default {
 
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/role_menu/listMenu/' + that.role_id,
+                url: '/sky/role_menu/listMenu/' + that.role_id,
                 method: 'get',
                 params: params
             })
@@ -100,7 +100,7 @@ export default {
                 menuIds: checkedArr.join(",")
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/role_menu/deleteAdd',
+                url: '/sky/role_menu/deleteAdd',
                 method: 'get',
                 params: params
             })

@@ -2,7 +2,7 @@
     <section id="remarksDialog">
         <el-dialog
             title="备注订单"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >
@@ -56,7 +56,7 @@ export default {
                 status: that.order_obj.status
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/update/note',
+                url: '/sky/order/update/note',
                 method: 'post',
                 params: params
             })

@@ -2,7 +2,7 @@
     <section id="editDialog">
         <el-dialog
             title="编辑秒杀商品信息"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="700px"
             :close-on-click-modal="false"
             >
@@ -19,7 +19,7 @@
                     </el-form-item>
                     <el-form-item label="秒杀价格:" prop="flashPromotionPrice">
                         <el-input v-model="withForm.flashPromotionPrice">
-                            <template slot="prepend">￥</template>
+                            <template #prepend>￥</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="剩余数量:" prop="stock">
@@ -98,7 +98,7 @@ export default {
                 sort: that.withForm.sort,
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/flashPromotionProductRelation/update',
+                url: '/sky/flashPromotionProductRelation/update',
                 method: 'post',
                 data: params
             })

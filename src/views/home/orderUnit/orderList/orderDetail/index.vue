@@ -107,34 +107,34 @@
                     :data="order_obj.orderItemList"
                     style="width: 100%;margin-top: 20px" border>
                     <el-table-column label="商品图片" width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         <img :src="scope.row.productPic" style="height: 80px">
                     </template>
                     </el-table-column>
                     <el-table-column label="商品名称" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         <p>{{scope.row.productName}}</p>
                         <p>品牌：{{scope.row.productBrand}}</p>
                     </template>
                     </el-table-column>
                     <el-table-column label="价格/货号" width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         <p>价格：￥{{scope.row.productPrice}}</p>
                         <p>货号：{{scope.row.productSn}}</p>
                     </template>
                     </el-table-column>
                     <el-table-column label="属性" width="140" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.productAttr | formatProductAttr}}
                     </template>
                     </el-table-column>
                     <el-table-column label="数量" width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.productQuantity}}
                     </template>
                     </el-table-column>
                     <el-table-column label="小计" width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         ￥{{scope.row.productPrice*scope.row.productQuantity}}
                     </template>
                     </el-table-column>
@@ -172,32 +172,32 @@
                             ref="orderHistoryTable"
                             :data="order_obj.historyList" border>
                     <el-table-column label="操作者"  width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.operateMan}}
                     </template>
                     </el-table-column>
                     <el-table-column label="操作时间"  width="160" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.createTime}}
                     </template>
                     </el-table-column>
                     <el-table-column label="订单状态"  width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.orderStatus | formatStatus}}
                     </template>
                     </el-table-column>
                     <el-table-column label="付款状态"  width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.orderStatus | formatPayStatus}}
                     </template>
                     </el-table-column>
                     <el-table-column label="发货状态"  width="120" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.orderStatus | formatDeliverStatus}}
                     </template>
                     </el-table-column>
                     <el-table-column label="备注" align="center">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         {{scope.row.note}}
                     </template>
                     </el-table-column>
@@ -349,7 +349,7 @@ export default {
             let params = {
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/order/details/' + that.$route.query.id,
+                url: '/sky/order/details/' + that.$route.query.id,
                 method: 'get',
                 params: params
             })

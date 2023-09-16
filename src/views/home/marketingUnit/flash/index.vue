@@ -10,7 +10,7 @@
                     </el-col>
                 </el-row>
             </el-form>
-            <el-button type="primary" slot="apple" @click="flashSession">秒杀时间段列表</el-button>
+            <el-button type="primary" #apple @click="flashSession">秒杀时间段列表</el-button>
         </searchDesign>
         <!-- 
             1.table的滚动条是height值影响的
@@ -27,20 +27,20 @@
             <el-table-column width="50" type="index" label="序号"></el-table-column>
             <el-table-column prop="title" label="活动标题" min-width="120"></el-table-column>
             <el-table-column label="活动状态" min-width="100">
-                <template slot-scope="scope">{{scope.row |formatActiveStatus}}</template>
+                <template v-slot="scope">{{scope.row |formatActiveStatus}}</template>
             </el-table-column>
             <el-table-column prop="startDate" label="开始时间" min-width="120"></el-table-column>
             <el-table-column prop="endDate" label="结束时间" min-width="120"></el-table-column>
             <el-table-column min-width="80">
-                <template slot="header">上线/下线</template>
-                <template slot-scope="scope">
+                <template #header>上线/下线</template>
+                <template v-slot="scope">
                     <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="0" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
                 </template>
             </el-table-column>
 
             <el-table-column width="180" fixed="right">
-                <template slot="header">操作</template>
-                <template slot-scope="scope">
+                <template #header>操作</template>
+                <template v-slot="scope">
                     <el-button type="text" @click="goodsWay(scope.row)">设置商品</el-button>
                     <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
                     <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
@@ -89,10 +89,10 @@ export default {
     },
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.$el.offsetHeight);
+        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
         this.tableHeight =
             this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.$el.offsetHeight + 50 + 1);
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
@@ -123,7 +123,7 @@ export default {
                 pageSize: that.pagingObj.pageSize
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/flashPromotion/list',
+                url: '/sky/flashPromotion/list',
                 method: 'get',
                 params: params
             })
@@ -154,7 +154,7 @@ export default {
                         status: value
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/flashPromotion/update',
+                        url: '/sky/flashPromotion/update',
                         method: 'post',
                         data: params
                     })
@@ -191,7 +191,7 @@ export default {
  
                     };
                     that.$apihttp({
-                        url: process.env.core_url + '/sky/flashPromotion/delete/' + row.id,
+                        url: '/sky/flashPromotion/delete/' + row.id,
                         method: 'get',
                         params: params
                     })

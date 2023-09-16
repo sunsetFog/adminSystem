@@ -30,6 +30,17 @@ Object.keys(directives).forEach(key => {
 // 全局注册组件
 import LineTextLine from '@sky/pcDesign/components/lineTextLine/index.vue';
 rainbow.component('LineTextLine', LineTextLine);
+import previewPictures from '@sky/pcDesign/components/previewPictures.vue';
+rainbow.component('previewPictures', previewPictures);
+import upload1 from '@sky/pcDesign/components/upload1.vue';
+rainbow.component('upload1', upload1);
+import pagination from '@sky/pcDesign/components/pagination.vue';
+rainbow.component('pagination', pagination);
+// 全局注册图标组件
+import * as Icons from '@element-plus/icons-vue'
+Object.keys(Icons).forEach(key => {
+  rainbow.component(key, Icons[key]) 
+})
 
 // --- 原型 ---
 
@@ -67,6 +78,8 @@ import VueCookies from 'vue-cookies';
 import Viewer from 'v-viewer';
 import 'viewerjs/dist/viewer.css';
 
+
+
 rainbow.use(store)
 .use(router)
 .use(ElementUI, { size: 'small', zIndex: 3000, locale: i18n.locale }) // 配置 Element Plus 的语言
@@ -74,3 +87,6 @@ rainbow.use(store)
 .use(i18n)
 // .use(Viewer)
 .mount('#app')
+
+
+export default rainbow;

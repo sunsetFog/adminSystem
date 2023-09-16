@@ -2,7 +2,7 @@
     <section id="messageDialog">
         <el-dialog
             title="发送站内信"
-            :visible.sync="dialogVisible"
+            v-model="dialogVisible"
             width="500px"
             :close-on-click-modal="false"
             >

@@ -64,7 +64,7 @@ export default {
                 status: that.addAndEditForm.status ? 1 : 0
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/admin/register',
+                url: '/sky/admin/register',
                 method: 'post',
                 data: params
             })
@@ -95,7 +95,7 @@ export default {
                 status: that.addAndEditForm.status ? 1 : 0
             }
             that.$apihttp({
-                url: process.env.core_url + '/sky/admin/update',
+                url: '/sky/admin/update',
                 method: 'post',
                 data: params
             })

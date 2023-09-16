@@ -17,7 +17,7 @@ export default {
                 adminId: row.id
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/admin_role/list',
+                url: '/sky/admin_role/list',
                 method: 'get',
                 params: params
             })
@@ -41,7 +41,7 @@ export default {
                 pageSize: 9999
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/role/list',
+                url: '/sky/role/list',
                 method: 'post',
                 params: params
             })
@@ -64,7 +64,7 @@ export default {
                 roleIds: that.role_value.join(",")
             };
             that.$apihttp({
-                url: process.env.core_url + '/sky/admin_role/deleteAdd',
+                url: '/sky/admin_role/deleteAdd',
                 method: 'get',
                 params: params
             })
