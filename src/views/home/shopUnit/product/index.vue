@@ -172,9 +172,9 @@ export default {
     mounted() {
         console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
         console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
-        // this.tableHeight =
-        //     this.$refs.refUnit.offsetHeight -
-        //     (this.$refs.refHeader.offsetHeight + 50 + 1);
+        this.tableHeight =
+            this.$refs.refUnit.offsetHeight -
+            (this.$refs.refHeader.offsetHeight + 50 + 1);
         console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
