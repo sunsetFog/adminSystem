@@ -46,9 +46,8 @@
         </el-option>
       </el-select>
     </div>
-    <section class="table-box">
+    <section class="table-box" ref="xTable1">
       <el-table
-        ref="xTable1"
         row-key="id"
         :data="tableData"
         v-loading="loading"
@@ -633,7 +632,7 @@ export default {
     },
     // 拖行排序
     rowDrop () {
-        console.log('----xulie----', Sortable)
+        console.log('----xulie----', this.$refs.xTable1)
         const tbody = this.$refs.xTable1.querySelector('.el-table__body-wrapper tbody');
         const _this = this;
         Sortable.create(tbody, {

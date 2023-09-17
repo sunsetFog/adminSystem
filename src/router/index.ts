@@ -20,6 +20,7 @@ import FirstRouter from './modules/firstRouter'
 //   }
 // ]
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: FirstRouter
@@ -30,25 +31,27 @@ import 'nprogress/nprogress.css';
 // 使用vue-cookies
 import VueCookies from 'vue-cookies';
 import store from '@/store';
+// @ts-ignore
+console.log("--VueCookies.get--", VueCookies.get(process.env.VUE_APP_TOKEN_KEY))
 // 路由拦截
-router.beforeEach((to, from) => {
+router.beforeEach((to, from, next) => {
   if (from.path == '/' && to.path != '/login') {
     // @ts-ignore
-    if (true || VueCookies.get('tokenAdminClient')) {
+    if (VueCookies.get(process.env.VUE_APP_TOKEN_KEY)) {
         store.dispatch('routerApple').then(function(value) {
-            console.log('--then结束--', to, from);
+            console.log('--then结束--', value);
             for (let i = 0; i < value.length; i++) {
               const item = value[i];
               router.addRoute(item);
             }
-            return { path: to.path };
+            console.log("--then结束-2-", router.getRoutes());
         });
     } else {
-      return { path: '/login' };
+      next({ path: '/login' })
     }
 }
   NProgress.start(); // 开始动画
-  return true;
+  next()
 })
 // 路由结束时
 router.afterEach((to, from) => {
