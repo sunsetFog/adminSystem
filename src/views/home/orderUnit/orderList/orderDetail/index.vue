@@ -13,7 +13,7 @@
                 <div class="icon-box">
                     <i class="el-icon-warning"></i>
                 </div>
-                
+
                 <div class="order-status">当前订单状态：{{order_obj.status | formatStatus}}</div>
 
                 <div class="operate-box" v-show="order_obj.status===0">
@@ -401,7 +401,7 @@ export default {
     margin: 0 auto;
     padding: 0 0 15px 0;
     box-sizing: border-box;
-    /deep/.el-card__header {
+    :deep(.el-card__header) {
         background: #f2f6fc;
     }
     .operate-container {
@@ -417,7 +417,7 @@ export default {
                 color: #f56c6c;
             }
         }
-        
+
         .order-status {
             float: left;
             font-size: 15px;

@@ -112,7 +112,7 @@
                   :placeholder="col.placeholder"
                   :multiple="col.multiple?true:false"
                   :multiple-limit="col.filter.multiplelimit"
-                 
+
                 >
                   <el-option
                     v-for="(o, okey) in typeof(col.options) === 'function' ? col.options(scope.row) : col.options"
@@ -146,7 +146,7 @@
                   :value-format="col.dateType=='date'?dateFormat:col.dateType=='datetime'?dateFormat + ' ' + timeFormat: false"
                   :format="col.dateType=='date'?dateFormat:col.dateType=='datetime'?dateFormat + ' ' + timeFormat: false"
                   :placeholder="col.placeholder"
-                 
+
                 />
                 <!-- 时间选择器 -->
                 <el-time-picker
@@ -157,7 +157,7 @@
                   :value-format="timeFormat"
                   :format="timeFormat"
                   :placeholder="col.placeholder"
-                 
+
                 />
               </template>
               <!-- 字段内容 -->
@@ -536,10 +536,10 @@ export default {
   display: flex;
   flex-direction: column;
 }
-/deep/.el-table__body-wrapper{
+:deep(.el-table__body-wrapper) {
     flex: 1;
 }
-/deep/ .cell-changed:before {
+:deep(.cell-changed:before) {
   content: "";
   top: -5px;
   left: -5px;
@@ -549,12 +549,10 @@ export default {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
-/deep/ .hidden-row {
+:deep(.hidden-row) {
   display: none;
 }
-
-/deep/ .message-div {
+:deep(.message-div) {
   margin-top: 3px;
   height: 100%;
   white-space: normal;
@@ -562,11 +560,11 @@ export default {
   overflow: hidden;
 }
 // 选择器加remote下拉图标不见问题
-/deep/.el-select .el-input .el-icon-::before {
+:deep(.el-select .el-input .el-icon-::before) {
   content: "\e6e1";
   transform: rotate(180deg);
 }
-/deep/.el-select .el-input.is-focus .el-icon- {
+:deep(.el-select .el-input.is-focus .el-icon-) {
   transform: rotate(0deg);
 }
 </style>

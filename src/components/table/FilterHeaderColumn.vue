@@ -62,7 +62,7 @@
       :type="col.filter.dateType"
       range-separator="~"
       size="mini"
-      style="width:100%;" 
+      style="width:100%;"
       :disabled="col.filter.disabled"
       :editable="col.filter.editable"
       :clearable="col.filter.clearable"
@@ -134,7 +134,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-/deep/.el-input--suffix .el-input__inner {
+:deep(.el-input--suffix .el-input__inner) {
   padding: 0 5px;
 }
 </style>

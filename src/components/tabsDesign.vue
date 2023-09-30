@@ -62,7 +62,7 @@ export default defineComponent({
     },
     destroyed:function(){
         document.removeEventListener('mouseup', function(e){
-            
+
         })
     },
     methods: {
@@ -130,14 +130,13 @@ export default defineComponent({
 
 <style lang="less" scoped>
 #tabsDesign {
-    /deep/.el-tabs__header {
+    :deep(.el-tabs__header) {
         border-bottom: 0px solid #e4e7ed;
         margin: 0;
     }
-    /deep/ .el-tabs__nav {
+    :deep(.el-tabs__nav) {
         border-bottom: 1px solid #e4e7ed;
     }
-
 
     .contextmenu {
         width: 100px;

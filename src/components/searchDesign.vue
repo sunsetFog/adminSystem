@@ -72,11 +72,11 @@ export default {
     width: 100%;
     padding-bottom: 10px;
     box-sizing: border-box;
-    /deep/.el-card__body {
+    :deep(.el-card__body) {
         padding: 5px 5px 5px 5px;
         box-sizing: border-box;
     }
-    /deep/.el-form-item {
+    :deep(.el-form-item) {
         margin: 5px;
     }
 

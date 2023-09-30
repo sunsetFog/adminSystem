@@ -136,13 +136,13 @@
         </el-table-column>
       </el-table>
     </section>
-      
+
 
     <div class="page-box">
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page.sync="pageNumber"
+        :current-page="pageNumber"
         :page-size="pageSize"
         layout="prev, pager, next, jumper"
         :total="pageTotal"
@@ -641,7 +641,7 @@ export default {
               console.log('--paixu--', newIndex, oldIndex)
               const currRow = _this.tableData.splice(oldIndex, 1)[0];
               _this.tableData.splice(newIndex, 0, currRow);
-              
+
               let idArr = _this.tableData.map(function(item){
                   return item.id
               })
@@ -815,7 +815,7 @@ export default {
 
       that.$refs.refForm.validate(function (valid) {
         if (valid) {
-          
+
           let params = {
             type: that.formAdd.huodongleixing, // 活动类型：1常规活动 2.链接活动
             communityId: that.formAdd.pingtaileixing, // 平台类型:关联社区id
@@ -851,8 +851,8 @@ export default {
             }
             params = { ...params,  ...lianjie };
           }
-            
-            
+
+
 
           // API.newInsert(params).then((res) => {
             let res = {"code":200,"msg":"成功","data":1,"time":"1648743918"}
@@ -1087,7 +1087,7 @@ export default {
         this.editEcho(this.saveRow)
       }
       console.log("row--", row);
-      
+
     },
     // 编辑详情
     editEcho(row, setType) {
@@ -1142,7 +1142,7 @@ export default {
         if(that.formAdd.huodongleixing == 1) {
           that.$nextTick(function(){
             that.$refs.appbianjiqi.createEditor();
-            that.$refs.pcbianjiqi.createEditor(); 
+            that.$refs.pcbianjiqi.createEditor();
             that.$refs.appbianjiqi.setContent(res.data.appDetail)
             that.$refs.pcbianjiqi.setContent(res.data.pcDetail)
           })

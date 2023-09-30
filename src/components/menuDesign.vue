@@ -27,7 +27,7 @@
                     <el-icon><Menu /></el-icon>
                     <span>{{item.title}}</span>
                 </template>
-                    <!-- 
+                    <!--
                         v-if="val.hidden != 1"
                      -->
                     <!-- <div v-for="(val,ind) in item.children" :key="val.key"> -->
@@ -128,6 +128,7 @@ export default defineComponent({
 <style lang="less" scoped>
 #menuDesign {
     height: calc(100% - 50px);
+
     // /deep/.el-scrollbar__wrap{
     //     overflow-x: hidden !important;
     // }
