@@ -2,7 +2,7 @@
   <section id="home-box">
     <div class="home-left" :style="{width: left_width}">
       <div class="logo-name">
-        <img :class="{'logo-img': true,'logo-active': isCollapse}" src="@sky/static/crm/image/logo.png">
+        <img :class="{'logo-img': true,'logo-active': isCollapse}" src="@sky/static/logo/logo.png">
         <span v-show="!isCollapse">爱沃里管理后台</span>
       </div>
       <menuDesign :isCollapse="isCollapse"></menuDesign>
@@ -25,14 +25,14 @@
             </div>
             <div class="user-box" slot="reference">
                 <div>
-                    <img src="@sky/static/reportForms/image/AheadVenus.png">
+                    <img src="@sky/static/image1/AheadVenus.png">
                 </div>
                 <div>
                     <span>Rafael</span>
                 </div>
             </div>
         </el-popover>
-        
+
 
       </div>
       <div class="navigation-tab">
@@ -44,7 +44,7 @@
     </div>
   </section>
 </template>
-    
+
 <script lang="ts">
 import menuDesign from '@/components/menuDesign.vue';
 import tabsDesign from '@/components/tabsDesign.vue';
@@ -144,7 +144,7 @@ export default defineComponent({
                 font-size: 24px;
             }
         }
-        
+
     }
     .home-right {
         flex: 1;
@@ -162,7 +162,7 @@ export default defineComponent({
             .show-menu {
                 font-size: 24px;
             }
-            
+
             .user-box {
                 height: 100%;
                 float: right;
