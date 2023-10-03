@@ -19,7 +19,7 @@ function luyou(arr) {
             continue;
         }
         item.name = lodash.uniqueId('mark-');
-        item.meta = { 
+        item.meta = {
             title: item.title,
             hidden: item.hidden,
             icon: item.icon,
@@ -43,9 +43,10 @@ function luyou(arr) {
         delete item.sort;
         delete item.subject;
         delete item.title;
-        // 按钮权限children，跳过一次循环
+        // 路由按钮权限跳过循环
         if(item.children.length != 0 && item.children[0].perms) {
-            continue;
+            item.permsList = item.children;
+            item.children = [];
         }
         // 推路由重定向
         if(item.children && item.children.length != 0) {
@@ -54,6 +55,7 @@ function luyou(arr) {
                 redirect: item.children[0].path
             })
         }
+        // children数组进入循环
         luyou(item.children);
     }
 }
@@ -109,7 +111,7 @@ const login = {
             console.log("--routerApple--", JSON.parse(JSON.stringify(state)));
 
             return state.routerList;
-            
+
         },
         dynamicRouter({state, commit, dispatch}, params) {
             luyou(params);

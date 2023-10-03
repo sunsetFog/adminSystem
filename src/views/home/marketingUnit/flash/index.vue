@@ -24,7 +24,7 @@
             <el-table-column width="50" type="index" label="序号"></el-table-column>
             <el-table-column prop="title" label="活动标题" min-width="120"></el-table-column>
             <el-table-column label="活动状态" min-width="100">
-                <template v-slot="scope">{{scope.row |formatActiveStatus}}</template>
+                <template v-slot="scope">{{formatActiveStatus(scope.row)}}</template>
             </el-table-column>
             <el-table-column prop="startDate" label="开始时间" min-width="120"></el-table-column>
             <el-table-column prop="endDate" label="结束时间" min-width="120"></el-table-column>
@@ -38,9 +38,9 @@
             <el-table-column width="180" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="goodsWay(scope.row)">设置商品</el-button>
-                    <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
-                    <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
+                    <el-button link @click="goodsWay(scope.row)">设置商品</el-button>
+                    <el-button link @click="addWay(scope.row)">编辑</el-button>
+                    <el-button link @click="deleteWay(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -71,7 +71,10 @@ export default {
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
         }
     },
-    filters: {
+    created() {
+        this.queryWay();
+    },
+    methods: {
         formatActiveStatus(row) {
             let nowTime = new Date().getTime();
             if (nowTime >= row.startDate && nowTime <= row.endDate) {
@@ -81,12 +84,7 @@ export default {
             } else {
                 return '活动未开始';
             }
-        }
-    },
-    created() {
-        this.queryWay();
-    },
-    methods: {
+        },
         flashSession() {
             this.$router.push({
                 path: '/home/marketingUnit/flash/flashSession/index'

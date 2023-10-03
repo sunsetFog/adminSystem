@@ -10,7 +10,7 @@
       :maxlength="col.filter.maxlength"
       :clearable="col.filter.clearable"
       :disabled="col.filter.disabled"
-      size="mini"
+      size="small"
       style="width:100%;"
       @keyup.enter.native="onQuery"
     />
@@ -23,7 +23,7 @@
       :controls="col.filter.controls"
       :step="col.filter.step"
       :precision="col.filter.precision"
-      size="mini"
+      size="small"
       style="width:100%;"
       :disabled="col.filter.disabled"
       controls-position="right"
@@ -37,7 +37,7 @@
       :filterable="col.filter.filterable"
       :disabled="col.filter.disabled"
       :collapse-tags="col.filter.collapsetags"
-      size="mini"
+      size="small"
       style="width:100%;"
       placeholder
       @keyup.enter.native="onQuery"
@@ -61,7 +61,7 @@
       v-model="queryData[col.prop]"
       :type="col.filter.dateType"
       range-separator="~"
-      size="mini"
+      size="small"
       style="width:100%;"
       :disabled="col.filter.disabled"
       :editable="col.filter.editable"
@@ -80,7 +80,7 @@
       ></component>
     </template>
     <!-- 输入框 -->
-    <el-input v-else :disabled="true" v-model="queryData[col.prop]" size="mini"/>
+    <el-input v-else :disabled="true" v-model="queryData[col.prop]" size="small"/>
   </el-row>
 </template>
 <script>

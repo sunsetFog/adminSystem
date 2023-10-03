@@ -13,11 +13,11 @@
 
     <div v-show="contextMenuVisible">
         <ul :style="{left: clientX+'px',top: clientY+'px'}" class="contextmenu">
-            <li><el-button type="text" @click="curTabReload()" size="mini">重新加载</el-button></li>
-            <li><el-button type="text" @click="closeAllTabs()" size="mini">关闭所有</el-button></li>
-            <li><el-button type="text" @click="closeOtherTabs('left')" :disabled="false" size="mini">关闭左边</el-button></li>
-            <li><el-button type="text" @click="closeOtherTabs('right')" :disabled="false" size="mini">关闭右边</el-button></li>
-            <li><el-button type="text" @click="closeOtherTabs('other')" size="mini">关闭其他</el-button></li>
+            <li><el-button link @click="curTabReload()" size="small">重新加载</el-button></li>
+            <li><el-button link @click="closeAllTabs()" size="small">关闭所有</el-button></li>
+            <li><el-button link @click="closeOtherTabs('left')" :disabled="false" size="small">关闭左边</el-button></li>
+            <li><el-button link @click="closeOtherTabs('right')" :disabled="false" size="small">关闭右边</el-button></li>
+            <li><el-button link @click="closeOtherTabs('other')" size="small">关闭其他</el-button></li>
         </ul>
     </div>
   </section>

@@ -12,7 +12,7 @@
                     <el-col :span="8">￥{{order_obj.totalAmount}}</el-col>
                     <el-col :span="4">运费:</el-col>
                     <el-col :span="8">
-                        <el-input v-model.number="moneyInfo.freightAmount" size="mini"><template #prepend>￥</template></el-input>
+                        <el-input v-model.number="moneyInfo.freightAmount" size="small"><template #prepend>￥</template></el-input>
                     </el-col>
                 </el-row>
 
@@ -28,7 +28,7 @@
                     <el-col :span="8">-￥{{order_obj.promotionAmount}}</el-col>
                     <el-col :span="4">折扣金额:</el-col>
                     <el-col :span="8">
-                        <el-input v-model.number="moneyInfo.discountAmount" size="mini"><template #prepend>-￥</template></el-input>
+                        <el-input v-model.number="moneyInfo.discountAmount" size="small"><template #prepend>-￥</template></el-input>
                     </el-col>
                 </el-row>
 

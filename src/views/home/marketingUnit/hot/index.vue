@@ -41,14 +41,14 @@
             </el-table-column>
             <el-table-column prop="sort" label="排序" min-width="60"></el-table-column>
             <el-table-column label="状态" min-width="100">
-                <template v-slot="scope">{{scope.row.recommendStatus | formatRecommendStatus}}</template>
+                <template v-slot="scope">{{formatRecommendStatus(scope.row.recommendStatus)}}</template>
             </el-table-column>
 
             <el-table-column width="150" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="sortWay(scope.row)">设置排序</el-button>
-                    <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
+                    <el-button link @click="sortWay(scope.row)">设置排序</el-button>
+                    <el-button link @click="deleteWay(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -92,19 +92,17 @@ export default {
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
         }
     },
-    filters: {
+    created() {
+        this.queryWay();
+    },
+    methods: {
         formatRecommendStatus(status){
             if(status===1){
                 return '推荐中';
             }else{
                 return '未推荐';
             }
-        }
-    },
-    created() {
-        this.queryWay();
-    },
-    methods: {
+        },
         sortWay(row) {
             this.$refs.sort.initForm(row);
         },

@@ -35,6 +35,12 @@ console.log('--VueCookies.get--', VueCookies.get(process.env.VUE_APP_TOKEN_KEY))
 // 路由拦截
 router.beforeEach((to, from, next) => {
     NProgress.start(); // 开始动画
+    // 路由按钮权限
+    // @ts-ignore
+    if(to.permsList) {
+        // @ts-ignore
+        sessionStorage.setItem('permsList', JSON.stringify(to.permsList));
+    }
     if (from.path == '/' && to.path != '/login') {
         // @ts-ignore
         // if (VueCookies.get(process.env.VUE_APP_TOKEN_KEY)) {

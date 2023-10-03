@@ -28,8 +28,8 @@
       <el-table-column width="120" fixed="right">
         <template #header>操作</template>
         <template v-slot="scope">
-          <el-button type="text" @click="editWay('编辑用户', scope.row)">编辑</el-button>
-          <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
+          <el-button link @click="editWay('编辑用户', scope.row)">编辑</el-button>
+          <el-button link @click="deleteWay(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

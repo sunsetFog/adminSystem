@@ -85,7 +85,7 @@
                             </el-table-column>
                             <el-table-column label="操作" align="center" width="100">
                                 <template v-slot="scope">
-                                <el-button type="text" @click="deleteCategory(scope.$index, scope.row)">删除</el-button>
+                                <el-button link @click="deleteCategory(scope.$index, scope.row)">删除</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -124,7 +124,7 @@
                                 </el-table-column>
                                 <el-table-column label="操作" align="center" width="100">
                                     <template v-slot="scope">
-                                    <el-button type="text" @click="deleteProduct(scope.$index, scope.row)">删除</el-button>
+                                    <el-button link @click="deleteProduct(scope.$index, scope.row)">删除</el-button>
                                     </template>
                                 </el-table-column>
                         </el-table>
@@ -241,7 +241,7 @@ export default {
                     if(flag) {
                         this.productRelationList.push(item);
                     }
-                    
+
                 }
             }
         },
@@ -430,6 +430,6 @@ export default {
 
 <style lang="less" scoped>
 #addDialog {
-    
+
 }
 </style>

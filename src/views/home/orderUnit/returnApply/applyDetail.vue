@@ -39,13 +39,13 @@
             <el-col :span="4">服务单号:</el-col>
             <el-col :span="8">{{reason.id}}</el-col>
             <el-col :span="4">申请状态:</el-col>
-            <el-col :span="8">{{reason.status | formatStatus}}</el-col>
+            <el-col :span="8">{{formatStatus(reason.status)}}</el-col>
         </el-row>
         <el-row :gutter="20">
             <el-col :span="4">订单编号:</el-col>
             <el-col :span="8">
                 {{reason.orderSn}}
-                <el-button type="text" @click="handleViewOrder">查看</el-button>
+                <el-button link @click="handleViewOrder">查看</el-button>
             </el-col>
             <el-col :span="4">申请时间:</el-col>
             <el-col :span="8">{{reason.createTime}}</el-col>
@@ -175,7 +175,7 @@ export default {
         this.detailWay()
         this.addressWay()
     },
-    filters: {
+    methods: {
         formatStatus(status) {
             if (status === 0) {
                 return "待处理";
@@ -186,9 +186,7 @@ export default {
             } else {
                 return "已拒绝";
             }
-        }
-    },
-    methods: {
+        },
         handleViewOrder(){
             this.$router.push({
                 path: '/home/orderUnit/orderList/orderDetail/index?id=' + this.reason.orderId
@@ -209,7 +207,7 @@ export default {
                         if(that.reason.proofPics != null) {
                             that.reason.proofPicsList = that.reason.proofPics.split(",");
                         }
-                        
+
                         that.goods_list = [];
                         that.goods_list.push(that.reason);
                     }

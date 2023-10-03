@@ -18,7 +18,7 @@
             <el-table-column width="180" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="goodsWay(scope.row)">商品列表</el-button>
+                    <el-button link @click="goodsWay(scope.row)">商品列表</el-button>
                 </template>
             </el-table-column>
         </el-table>

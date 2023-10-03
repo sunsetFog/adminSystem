@@ -9,7 +9,7 @@
         </el-row>
         <el-row :gutter="20">
             <el-col :span="4">可使用商品:</el-col>
-            <el-col :span="8">{{coupon_row.useType | formatUseType}}</el-col>
+            <el-col :span="8">{{formatUseType(coupon_row.useType)}}</el-col>
             <el-col :span="4">使用门槛:</el-col>
             <el-col :span="8">满{{coupon_row.minPoint}}元可用</el-col>
         </el-row>
@@ -17,7 +17,7 @@
             <el-col :span="4">面值:</el-col>
             <el-col :span="8">{{coupon_row.amount}}元</el-col>
             <el-col :span="4">状态:</el-col>
-            <el-col :span="8">{{coupon_row.endTime | formatStatus}}</el-col>
+            <el-col :span="8">{{formatStatus(coupon_row.endTime)}}</el-col>
         </el-row>
         <el-row :gutter="20">
             <el-col :span="4">有效期:</el-col>
@@ -72,11 +72,11 @@
             <el-table-column prop="couponCode" label="优惠码" min-width="120"></el-table-column>
             <el-table-column prop="memberNickname" label="领取会员" min-width="100"></el-table-column>
             <el-table-column label="领取方式" min-width="100">
-                <template v-slot="scope">{{scope.row.getType | formatGetType}}</template>
+                <template v-slot="scope">{{formatGetType(scope.row.getType)}}</template>
             </el-table-column>
             <el-table-column prop="createTime" label="领取时间" min-width="120"></el-table-column>
             <el-table-column label="当前状态" min-width="140">
-                <template v-slot="scope">{{scope.row.useStatus | formatCouponHistoryUseType}}</template>
+                <template v-slot="scope">{{formatCouponHistoryUseType(scope.row.useStatus)}}</template>
             </el-table-column>
             <el-table-column prop="useTime" label="使用时间" min-width="120"></el-table-column>
             <el-table-column label="订单编号" min-width="140">
@@ -139,7 +139,11 @@ export default {
             ]
         }
     },
-    filters: {
+    created() {
+        this.couponRow();
+        this.queryWay();
+    },
+    methods: {
         formatUseType(useType) {
             if (useType === 0) {
                 return '全场通用';
@@ -173,12 +177,6 @@ export default {
                 return '已过期';
             }
         },
-    },
-    created() {
-        this.couponRow();
-        this.queryWay();
-    },
-    methods: {
         resetWay() {
             this.queryData = {
                 useStatus: '',

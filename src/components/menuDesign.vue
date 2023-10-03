@@ -27,16 +27,14 @@
                     <el-icon><Menu /></el-icon>
                     <span>{{item.title}}</span>
                 </template>
-                    <!--
-                        v-if="val.hidden != 1"
-                     -->
-                    <!-- <div v-for="(val,ind) in item.children" :key="val.key"> -->
+
+                    <template v-for="(val,ind) in item.children">
                         <!-- 第二级 -->
                         <!-- el-sub-menu的index绑定是@select事件的参数,也是:default-active的参数 -->
-                        <el-menu-item :index="val.key" v-for="(val,ind) in item.children" :key="val.key">
+                        <el-menu-item :index="val.key" v-if="val.hidden != 1" :key="val.key">
                             <div style="width: 100%;height: 100%;text-indent: 25px;">{{val.title}}</div>
                         </el-menu-item>
-                    <!-- </div> -->
+                    </template>
             </el-sub-menu>
         </div>
         </el-menu>

@@ -38,7 +38,7 @@
                 <template v-slot="scope">{{scope.row.typeLabel}}</template>
             </el-table-column>
             <el-table-column label="可使用商品" min-width="100">
-                <template v-slot="scope">{{scope.row.useType | formatUseType}}</template>
+                <template v-slot="scope">{{formatUseType(scope.row.useType)}}</template>
             </el-table-column>
             <el-table-column label="使用门槛" min-width="120">
                 <template v-slot="scope">满{{scope.row.minPoint}}元可用</template>
@@ -47,21 +47,21 @@
                 <template v-slot="scope">{{scope.row.amount}}元</template>
             </el-table-column>
             <el-table-column label="适用平台" min-width="100">
-                <template v-slot="scope">{{scope.row.platform | formatPlatform}}</template>
+                <template v-slot="scope">{{formatPlatform(scope.row.platform)}}</template>
             </el-table-column>
             <el-table-column label="有效期" min-width="170">
                 <template v-slot="scope">{{scope.row.startTime}}至{{scope.row.endTime}}</template>
             </el-table-column>
             <el-table-column label="状态" min-width="100">
-                <template v-slot="scope">{{scope.row.endTime | formatStatus}}</template>
+                <template v-slot="scope">{{formatStatus(scope.row.endTime)}}</template>
             </el-table-column>
 
             <el-table-column width="150" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="detailsWay(scope.row)">领取详情</el-button>
-                    <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
-                    <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
+                    <el-button link @click="detailsWay(scope.row)">领取详情</el-button>
+                    <el-button link @click="addWay(scope.row)">编辑</el-button>
+                    <el-button link @click="deleteWay(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -110,7 +110,10 @@ export default {
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
         }
     },
-    filters: {
+    created() {
+        this.queryWay();
+    },
+    methods: {
         formatUseType(useType){
             if(useType===0){
                 return '全场通用';
@@ -137,12 +140,7 @@ export default {
             }else{
                 return '已过期';
             }
-        }
-    },
-    created() {
-        this.queryWay();
-    },
-    methods: {
+        },
         detailsWay(row) {
             this.$router.push({
                 path: '/home/marketingUnit/coupon/couponHistory?id=' + row.id

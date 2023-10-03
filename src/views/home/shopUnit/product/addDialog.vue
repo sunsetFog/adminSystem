@@ -91,7 +91,7 @@
                         <el-checkbox-group v-model="formOf02.serviceList">
                             <el-checkbox label="无忧退货"></el-checkbox>
                             <el-checkbox label="快速退款"></el-checkbox>
-                            <el-checkbox label="免费包邮"></el-checkbox>      
+                            <el-checkbox label="免费包邮"></el-checkbox>
                         </el-checkbox-group>
                     </el-form-item>
                     <el-form-item label="详细页标题:" prop="detailTitle">
@@ -177,8 +177,8 @@
                                             操作：<el-button type="primary" @click="addLadderWay()">添加</el-button>
                                         </template>
                                         <template v-slot="scope">
-                                            
-                                            <el-button type="text" @click="deleteLadderWay(scope)">删除</el-button>
+
+                                            <el-button link @click="deleteLadderWay(scope)">删除</el-button>
                                         </template>
                                     </el-table-column>
                                 </el-table>
@@ -208,8 +208,8 @@
                                             操作：<el-button type="primary" @click="addFullMinusWay()">添加</el-button>
                                         </template>
                                         <template v-slot="scope">
-                                            
-                                            <el-button type="text" @click="deleteFullMinusWay(scope)">删除</el-button>
+
+                                            <el-button link @click="deleteFullMinusWay(scope)">删除</el-button>
                                         </template>
                                     </el-table-column>
                                 </el-table>
@@ -562,7 +562,7 @@ export default {
                 "brandName": brandName, // @ApiModelProperty(value = "品牌名称")
                 "deleteStatus": 0, // @ApiModelProperty(value = "删除状态：0->未删除；1->已删除")
                 "description": that.formOf01.introduce, // 商品介绍 @ApiModelProperty(value = "商品描述")
-                "detailDesc": that.formOf02.description, 
+                "detailDesc": that.formOf02.description,
                 "detailHtml": "<p>qqqqqqqqqqqq</p>", // 电脑端详情 @ApiModelProperty(value = "产品详情网页内容")
                 "detailMobileHtml": "", // 移动端详情 @ApiModelProperty(value = "移动端网页详情")
                 "detailTitle": that.formOf02.detailTitle, // 详细页标题
@@ -572,7 +572,7 @@ export default {
                 "flashPromotionPrice": 0, // ? 删
                 "flashPromotionSort": 0, // ? 删
                 "giftPoint": that.formOf02.integral, // @ApiModelProperty(value = "赠送的积分")
-                "giftGrowth": that.formOf02.grow, // @ApiModelProperty(value = "赠送的成长值") 
+                "giftGrowth": that.formOf02.grow, // @ApiModelProperty(value = "赠送的成长值")
                 "keywords": that.formOf02.keyword, // 商品关键字
                 "lowStock": 0, // @ApiModelProperty(value = "库存预警值")
                 "name": that.formOf01.name, // 商品名称
@@ -582,59 +582,59 @@ export default {
                 "pic": "", // 规格参数 图片 ？
                 "memberPriceList": [ // @ApiModelProperty("商品会员价格设置")
                     // {
-                    //     "memberLevelId": 1, 
+                    //     "memberLevelId": 1,
                     //     "memberLevelName": "黄金会员"
-                    // }, 
+                    // },
                     // {
-                    //     "memberLevelId": 2, 
+                    //     "memberLevelId": 2,
                     //     "memberLevelName": "白金会员"
-                    // }, 
+                    // },
                     // {
-                    //     "memberLevelId": 3, 
+                    //     "memberLevelId": 3,
                     //     "memberLevelName": "钻石会员"
                     // }
-                ], 
+                ],
                 "productFullReductionList": [ // @ApiModelProperty("商品满减价格设置")
                     // {
-                    //     "fullPrice": 0, 
+                    //     "fullPrice": 0,
                     //     "reducePrice": 0
                     // }
-                ], 
+                ],
                 "productLadderList": [ // @ApiModelProperty("商品阶梯价格设置")
                     // {
-                    //     "count": 0, 
-                    //     "discount": 0, 
+                    //     "count": 0,
+                    //     "discount": 0,
                     //     "price": 0
                     // }
-                ], 
+                ],
                 "previewStatus": that.formOf02.advanceNotice ? 1 : 0, // @ApiModelProperty(value = "是否为预告商品：0->不是；1->是")
                 "price": that.formOf01.price, // 商品售价
                 "productAttributeCategoryId": that.formOf03.productAttributeCategoryId, // 属性分类id
                 "productAttributeValueList": [ // @ApiModelProperty("商品参数及自定义规格属性")
                     // {
-                    //     "productAttributeId": 24, 
+                    //     "productAttributeId": 24,
                     //     "value": "21"
-                    // }, 
+                    // },
                     // {
-                    //     "productAttributeId": 25, 
+                    //     "productAttributeId": 25,
                     //     "value": "春季"
-                    // }, 
+                    // },
                     // {
-                    //     "productAttributeId": 37, 
+                    //     "productAttributeId": 37,
                     //     "value": "儿童"
-                    // }, 
+                    // },
                     // {
-                    //     "productAttributeId": 38, 
+                    //     "productAttributeId": 38,
                     //     "value": "2018年春"
-                    // }, 
+                    // },
                     // {
-                    //     "productAttributeId": 39, 
+                    //     "productAttributeId": 39,
                     //     "value": "中袖"
                     // }
-                ], 
+                ],
                 "skuStockList": [ ], // @ApiModelProperty("商品的sku库存信息")
                 "subjectProductRelationList": subjectProductRelationList, // @ApiModelProperty("专题和商品关系")
-                // [ 
+                // [
                 //     { "subjectId": 1 }
                 // ],
                 "prefrenceAreaProductRelationList": prefrenceAreaProductRelationList, // @ApiModelProperty("优选专区和商品的关系")
@@ -713,6 +713,6 @@ export default {
 
 <style lang="less" scoped>
 #addDialog {
-    
+
 }
 </style>

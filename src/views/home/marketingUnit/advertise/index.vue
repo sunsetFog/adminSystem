@@ -46,7 +46,7 @@
             <el-table-column prop="id" label="编号" min-width="80"></el-table-column>
             <el-table-column prop="name" label="广告名称" min-width="120"></el-table-column>
             <el-table-column label="广告位置" min-width="120">
-                <template v-slot="scope">{{scope.row.type | formatType}}</template>
+                <template v-slot="scope">{{formatType(scope.row.type)}}</template>
             </el-table-column>
             <el-table-column label="广告图片" min-width="120">
                 <template v-slot="scope"><img style="height: 50px" :src="scope.row.pic"></template>
@@ -69,8 +69,8 @@
             <el-table-column width="100" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="addWay(scope.row)">编辑</el-button>
-                    <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
+                    <el-button link @click="addWay(scope.row)">编辑</el-button>
+                    <el-button link @click="deleteWay(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -113,7 +113,10 @@ export default {
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
         }
     },
-    filters: {
+    created() {
+        this.queryWay();
+    },
+    methods: {
         formatType(type){
             if(type===1){
                 return 'APP首页轮播';
@@ -121,11 +124,6 @@ export default {
                 return 'PC首页轮播';
             }
         },
-    },
-    created() {
-        this.queryWay();
-    },
-    methods: {
         resetWay() {
             this.queryData = {
                 name: '',

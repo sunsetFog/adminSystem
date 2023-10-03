@@ -6,7 +6,7 @@
         border
         :fit="fitTable"
         highlight-current-row
-        size="mini"
+        size="small"
         @current-change="currentChange"
         @selection-change="selectionChange"
         @row-click="rowClick"

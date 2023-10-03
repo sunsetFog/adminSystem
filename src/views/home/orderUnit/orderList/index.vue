@@ -84,11 +84,11 @@
             <el-table-column width="150" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="orderDetail(scope.row)">查看订单</el-button>
-                    <el-button v-show="scope.row.status == 0" type="text" @click="closeWay(scope.row)">关闭订单</el-button>
-                    <el-button v-show="scope.row.status == 1" type="text" @click="goodsWay(scope.row)">订单发货</el-button>
-                    <el-button v-show="scope.row.status == 2" type="text" @click="followUpWay(scope.row)">订单跟踪</el-button>
-                    <el-button v-show="scope.row.status == 4" type="text" @click="deleteWay(scope.row)">删除订单</el-button>
+                    <el-button link @click="orderDetail(scope.row)">查看订单</el-button>
+                    <el-button v-show="scope.row.status == 0" link @click="closeWay(scope.row)">关闭订单</el-button>
+                    <el-button v-show="scope.row.status == 1" link @click="goodsWay(scope.row)">订单发货</el-button>
+                    <el-button v-show="scope.row.status == 2" link @click="followUpWay(scope.row)">订单跟踪</el-button>
+                    <el-button v-show="scope.row.status == 4" link @click="deleteWay(scope.row)">删除订单</el-button>
                 </template>
             </el-table-column>
         </el-table>

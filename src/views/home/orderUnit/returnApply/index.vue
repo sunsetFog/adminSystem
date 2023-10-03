@@ -74,7 +74,7 @@
             <el-table-column width="100" fixed="right">
                 <template #header>操作</template>
                 <template v-slot="scope">
-                    <el-button type="text" @click="detailsWay(scope.row)">查看详情</el-button>
+                    <el-button link @click="detailsWay(scope.row)">查看详情</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -122,9 +122,6 @@ export default {
             // -----------------
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
         }
-    },
-    filters: {
-
     },
     created() {
         this.queryWay();

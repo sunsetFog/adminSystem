@@ -1,6 +1,6 @@
 <template>
     <section id="orderDetailUnit">
-        <el-steps :active="order_obj.status | formatStepStatus" finish-status="success" align-center style="margin-bottom: 25px;">
+        <el-steps :active="formatStepStatus(order_obj.status)" finish-status="success" align-center style="margin-bottom: 25px;">
             <el-step title="提交订单"></el-step>
             <el-step title="支付订单"></el-step>
             <el-step title="平台发货"></el-step>
@@ -14,7 +14,7 @@
                     <i class="el-icon-warning"></i>
                 </div>
 
-                <div class="order-status">当前订单状态：{{order_obj.status | formatStatus}}</div>
+                <div class="order-status">当前订单状态：{{formatStatus(order_obj.status)}}</div>
 
                 <div class="operate-box" v-show="order_obj.status===0">
                     <el-button @click="consigneeWay">修改收货人信息</el-button>
@@ -53,19 +53,19 @@
                     <el-col :span="4">用户账号:</el-col>
                     <el-col :span="8">{{order_obj.memberUsername}}</el-col>
                     <el-col :span="4">支付方式:</el-col>
-                    <el-col :span="8">{{order_obj.payType | formatPayType}}</el-col>
+                    <el-col :span="8">{{formatPayType(order_obj.payType)}}</el-col>
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="4">订单来源:</el-col>
-                    <el-col :span="8">{{order_obj.sourceType | formatSourceType}}</el-col>
+                    <el-col :span="8">{{formatSourceType(order_obj.sourceType)}}</el-col>
                     <el-col :span="4">订单类型:</el-col>
-                    <el-col :span="8">{{order_obj.orderType | formatOrderType}}</el-col>
+                    <el-col :span="8">{{formatOrderType(order_obj.orderType)}}</el-col>
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="4">配送方式:</el-col>
-                    <el-col :span="8">{{order_obj.deliveryCompany | formatNull}}</el-col>
+                    <el-col :span="8">{{formatNull(order_obj.deliveryCompany)}}</el-col>
                     <el-col :span="4">物流单号:</el-col>
-                    <el-col :span="8">{{order_obj.deliverySn | formatNull}}</el-col>
+                    <el-col :span="8">{{formatNull(order_obj.deliverySn)}}</el-col>
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="4">自动确认收货时间:</el-col>
@@ -84,7 +84,7 @@
                         width="200"
                         trigger="hover"
                         :content="order_obj.promotionInfo">
-                        <span slot="reference">{{order_obj.promotionInfo | formatLongText}}</span>
+                        <span slot="reference">{{formatLongText(order_obj.promotionInfo)}}</span>
                         </el-popover>
                     </el-col>
                 </el-row>
@@ -99,7 +99,7 @@
                     <el-col :span="4">邮政编码:</el-col>
                     <el-col :span="8">{{order_obj.receiverPostCode}}</el-col>
                     <el-col :span="4">收货地址:</el-col>
-                    <el-col :span="8">{{order_obj | formatAddress}}</el-col>
+                    <el-col :span="8">{{formatAddress(order_obj)}}</el-col>
                 </el-row>
                 <div class="title-box">商品信息</div>
                 <el-table
@@ -125,7 +125,7 @@
                     </el-table-column>
                     <el-table-column label="属性" width="140" align="center">
                     <template v-slot="scope">
-                        {{scope.row.productAttr | formatProductAttr}}
+                        {{formatProductAttr(scope.row.productAttr)}}
                     </template>
                     </el-table-column>
                     <el-table-column label="数量" width="120" align="center">
@@ -183,17 +183,17 @@
                     </el-table-column>
                     <el-table-column label="订单状态"  width="120" align="center">
                     <template v-slot="scope">
-                        {{scope.row.orderStatus | formatStatus}}
+                        {{formatStatus(scope.row.orderStatus)}}
                     </template>
                     </el-table-column>
                     <el-table-column label="付款状态"  width="120" align="center">
                     <template v-slot="scope">
-                        {{scope.row.orderStatus | formatPayStatus}}
+                        {{formatPayStatus(scope.row.orderStatus)}}
                     </template>
                     </el-table-column>
                     <el-table-column label="发货状态"  width="120" align="center">
                     <template v-slot="scope">
-                        {{scope.row.orderStatus | formatDeliverStatus}}
+                        {{formatDeliverStatus(scope.row.orderStatus)}}
                     </template>
                     </el-table-column>
                     <el-table-column label="备注" align="center">
@@ -232,7 +232,7 @@ export default {
     created() {
         this.detailWay();
     },
-    filters: {
+    methods: {
         formatStepStatus(value) {
             if (value === 1) {
             //待发货
@@ -341,9 +341,7 @@ export default {
             } else {
                 return '待付款';
             }
-        }
-    },
-    methods: {
+        },
         detailWay() {
             let that = this;
             let params = {

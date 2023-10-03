@@ -121,15 +121,15 @@
           <template #header> 操作 </template>
           <template v-slot="scope">
             <el-button
-              type="text"
+              link
               size="small"
               @click="newlyEdit('编辑', scope.row)"
               >编辑</el-button
             >
-            <!-- <el-button type="text" size="small" @click="showInfoTwo(scope.row)"
+            <!-- <el-button link size="small" @click="showInfoTwo(scope.row)"
               >排序</el-button
             > -->
-            <el-button type="text" size="small" @click="deleteStrip(scope.row)"
+            <el-button link size="small" @click="deleteStrip(scope.row)"
               >删除</el-button
             >
           </template>
@@ -272,7 +272,7 @@
                   action=""
                   :http-request="(val)=>{uploadHttp(val,'apprukoutu')}"
                   :before-upload="beforeAvatarUpload"
-                  list-type="text"
+                  list-link
                   :show-file-list="false"
                 >
                   <i v-if="!formAdd.apprukoutu" class="el-icon-plus pen-plus"></i>
@@ -296,7 +296,7 @@
                   action=""
                   :http-request="(val)=>{uploadHttp(val,'appxiangqingtu')}"
                   :before-upload="beforeAvatarUpload"
-                  list-type="text"
+                  list-link
                   :show-file-list="false"
                 >
                   <i v-if="!formAdd.appxiangqingtu" class="el-icon-plus pen-plus"></i>
@@ -326,7 +326,7 @@
                   action=""
                   :http-request="(val)=>{uploadHttp(val,'pcrukoutu')}"
                   :before-upload="beforeAvatarUpload"
-                  list-type="text"
+                  list-link
                   :show-file-list="false"
                 >
                   <i v-if="!formAdd.pcrukoutu" class="el-icon-plus pen-plus"></i>
@@ -350,7 +350,7 @@
                   action=""
                   :http-request="(val)=>{uploadHttp(val,'pcxiangqingtu')}"
                   :before-upload="beforeAvatarUpload"
-                  list-type="text"
+                  list-link
                   :show-file-list="false"
                 >
                   <i v-if="!formAdd.pcxiangqingtu" class="el-icon-plus pen-plus"></i>
@@ -596,16 +596,6 @@ export default {
   },
   mounted() {
     this.rowDrop();
-  },
-  filters: {
-    // communityIdType(value) {
-    //   // console.log('communityIdType=',value,_that.community_save);
-    //   for (let i = 0; i < _that.community_save.length; i++) {
-    //     if (_that.community_save[i].value == value) {
-    //       return _that.community_save[i].label;
-    //     }
-    //   }
-    // },
   },
   methods: {
     routineWay(value) {
