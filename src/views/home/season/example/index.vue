@@ -3,21 +3,18 @@
     <section class="header-box">
       <el-input v-model="queryData.isName" placeholder="请输入内容" style="width: 200px;"></el-input>
       <el-button type="primary" @click="addWay('新建用户')">添加</el-button>
-      <!-- 
+      <!--
           study: 自定义指令
        -->
       <el-button type="primary" v-operation-auth="'user:add'">二哈</el-button>
       <el-button type="primary" size="small" icon="el-icon-search" @click="queryWay">搜索</el-button>
     </section>
-    <!-- 
-        1.table的滚动条是height值影响的    
-        2.要是table在mouted生命周期不重新渲染了，强制刷新渲染也没用，那么用v-if="tableHeight != 0"控制渲染延后
-    -->
-    <el-table
+    <main>
+        <el-table
       :data="tableData"
       border
       style="width: 100%"
-      :height="600"
+      height="100%"
     >
       <el-table-column width="50" type="index" label="序号"></el-table-column>
       <el-table-column prop="name" label="商品名" min-width="120"></el-table-column>
@@ -36,6 +33,8 @@
         </template>
       </el-table-column>
     </el-table>
+    </main>
+
 
     <pagination :pagingObj="pagingObj" @emitWay="queryWay" ref="refPage"></pagination>
 
@@ -88,9 +87,6 @@ export default defineComponent({
     created() {
         this.queryWay();
     },
-    mounted() {
-
-    },
     methods: {
         queryWay() {
             let that = this;
@@ -128,7 +124,7 @@ export default defineComponent({
             let that = this;
             that.ruleForm.id = row.id || null;
             that.ruleForm.tradeName = row.name || '';
-            
+
             that.$nextTick(function() {
                 that.$refs.refUpload.download_url = row.download_url || '';
                 that.$refs.refUpload.imageUrl = row.imgUrl || '';
@@ -241,6 +237,11 @@ export default defineComponent({
 <style lang="less" scoped>
 #exampleUnit {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    main {
+        flex: 1;
+    }
     .header-box {
         padding: 0 0 8px 0;
         box-sizing: border-box;

@@ -36,10 +36,12 @@ import upload1 from '@sky/pcDesign/components/upload1.vue';
 rainbow.component('upload1', upload1);
 import pagination from '@sky/pcDesign/components/pagination.vue';
 rainbow.component('pagination', pagination);
+import searchDesign from '@/components/searchDesign.vue';
+rainbow.component('searchDesign', searchDesign);
 // 全局注册图标组件
 import * as Icons from '@element-plus/icons-vue'
 Object.keys(Icons).forEach(key => {
-  rainbow.component(key, Icons[key]) 
+  rainbow.component(key, Icons[key])
 })
 
 // --- 原型 ---

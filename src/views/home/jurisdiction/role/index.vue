@@ -12,53 +12,46 @@
             </el-form>
         </searchDesign>
 
-        <el-table
-            :data="tableData"
-            border
-            style="width: 100%"
-            v-if="tableHeight != 0"
-            :height="tableHeight"
-            ref="refTable"
-        >
-            <el-table-column width="50" type="index" label="序号"></el-table-column>
-            <el-table-column prop="name" label="角色名称" min-width="100"></el-table-column>
-            <el-table-column prop="description" label="描述" min-width="120"></el-table-column>
-            <el-table-column prop="adminCount" label="用户数" min-width="80"></el-table-column>
-            <el-table-column prop="createTime" label="添加时间" min-width="100"></el-table-column>
-            <el-table-column min-width="80">
-                <template #header>是否启用</template>
-                <template v-slot="scope">
-                    <el-switch v-model="scope.row.status" @change="(val)=>{switchChange(val, scope.row)}"></el-switch>
-                </template>
-            </el-table-column>
+        <main>
+            <el-table :data="tableData" border style="width: 100%" height="100%" ref="refTable">
+                <el-table-column width="50" type="index" label="序号"></el-table-column>
+                <el-table-column prop="name" label="角色名称" min-width="100"></el-table-column>
+                <el-table-column prop="description" label="描述" min-width="120"></el-table-column>
+                <el-table-column prop="adminCount" label="用户数" min-width="80"></el-table-column>
+                <el-table-column prop="createTime" label="添加时间" min-width="100"></el-table-column>
+                <el-table-column min-width="80">
+                    <template #header>是否启用</template>
+                    <template v-slot="scope">
+                        <el-switch v-model="scope.row.status" @change="(val) => { switchChange(val, scope.row) }"></el-switch>
+                    </template>
+                </el-table-column>
 
-            <el-table-column width="250" fixed="right">
-                <template #header>操作</template>
-                <template v-slot="scope">
-                    <el-button type="text" @click="assignMenu(scope.row)">分配菜单</el-button>
-                    <el-button type="text" @click="allocateResources(scope.row)">分配资源</el-button>
-                    <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
-                    <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+                <el-table-column width="250" fixed="right">
+                    <template #header>操作</template>
+                    <template v-slot="scope">
+                        <el-button type="text" @click="assignMenu(scope.row)">分配菜单</el-button>
+                        <el-button type="text" @click="allocateResources(scope.row)">分配资源</el-button>
+                        <el-button type="text" @click="editWay(scope.row)">编辑</el-button>
+                        <el-button type="text" @click="deleteWay(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </main>
+
+
 
         <pagination :pagingObj="pagingObj" @emitWay="queryWay"></pagination>
 
 
-        <el-dialog
-            :title="dialog_title"
-            v-model="dialogVisible"
-            width="500px"
-            :close-on-click-modal="false"
-            >
+        <el-dialog :title="dialog_title" v-model="dialogVisible" width="500px" :close-on-click-modal="false">
             <section class="mercury">
                 <el-form :model="addAndEditForm" :rules="rulesCheck" ref="addAndEditForm" label-width="100px">
                     <el-form-item label="角色名称:" prop="name">
                         <el-input v-model="addAndEditForm.name" placeholder="请输入角色名称"></el-input>
                     </el-form-item>
                     <el-form-item label="描述:" prop="description">
-                        <el-input type="textarea" v-model="addAndEditForm.description" maxlength="100" show-word-limit></el-input>
+                        <el-input type="textarea" v-model="addAndEditForm.description" maxlength="100"
+                            show-word-limit></el-input>
                     </el-form-item>
                     <el-form-item label="是否启用:" prop="status">
                         <el-switch v-model="addAndEditForm.status"></el-switch>
@@ -85,21 +78,12 @@ export default {
             },
             // -----------------
             tableData: [],
-            tableHeight: 0,
             // -----------------
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
         }
     },
     created() {
         this.queryWay();
-    },
-    mounted() {
-        console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
-        this.tableHeight =
-            this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.offsetHeight + 50 + 1);
-        console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
         queryWay() {
@@ -221,6 +205,12 @@ export default {
 <style lang="less" scoped>
 #roleUnit {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex: 1;
+    }
 }
 </style>
 

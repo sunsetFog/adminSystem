@@ -1,16 +1,12 @@
 <template>
     <section id="flashProductRelation" ref="refUnit">
         <searchDesign @queryWay="queryWay" ref="refHeader" @addWay="addWay" :sousuo="false"></searchDesign>
-        <!-- 
-            1.table的滚动条是height值影响的
-            2.要是table在mouted生命周期不重新渲染了，强制刷新渲染也没用，那么用v-if="tableHeight != 0"控制渲染延后
-        -->
-        <el-table
+        <main>
+            <el-table
             :data="tableData"
             border
             style="width: 100%"
-            v-if="tableHeight != 0"
-            :height="tableHeight"
+            height="100%"
             ref="refTable"
         >
             <el-table-column width="50" type="index" label="序号"></el-table-column>
@@ -41,6 +37,8 @@
                 </template>
             </el-table-column>
         </el-table>
+        </main>
+
 
         <pagination :pagingObj="pagingObj" @emitWay="queryWay"></pagination>
 
@@ -63,21 +61,12 @@ export default {
             },
             // -----------------
             tableData: [],
-            tableHeight: 0,
             // -----------------
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 }
         }
     },
     created() {
         this.queryWay();
-    },
-    mounted() {
-        console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
-        this.tableHeight =
-            this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.offsetHeight + 50 + 1);
-        console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
         addWay() {
@@ -195,6 +184,11 @@ export default {
 <style lang="less" scoped>
 #flashProductRelation {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    main {
+        flex: 1;
+    }
 }
 </style>
 

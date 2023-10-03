@@ -24,13 +24,12 @@
                 </el-row>
             </el-form>
         </searchDesign>
-
-        <el-table
+        <main>
+            <el-table
             :data="tableData"
             border
             style="width: 100%"
-            v-if="tableHeight != 0"
-            :height="tableHeight"
+            height="100%"
             ref="refTable"
             row-key="id"
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
@@ -67,6 +66,8 @@
                 </template>
             </el-table-column>
         </el-table>
+        </main>
+
 
         <!-- <pagination :pagingObj="pagingObj" @emitWay="menuWay"></pagination> -->
 
@@ -153,7 +154,6 @@ export default {
             ],
             // -----------------
             tableData: [],
-            tableHeight: 0,
             // -----------------
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
             id_list: []
@@ -161,14 +161,6 @@ export default {
     },
     created() {
         this.subjectChange();
-    },
-    mounted() {
-        console.log('--refUnit-', this.$refs.refUnit.offsetHeight);
-        console.log('--refHeader-$el指向模板根标签-', this.$refs.refHeader.offsetHeight);
-        this.tableHeight =
-            this.$refs.refUnit.offsetHeight -
-            (this.$refs.refHeader.offsetHeight + 1);
-        console.log('--tableHeight--', this.tableHeight);
     },
     methods: {
         typeWay(value) {
@@ -204,10 +196,10 @@ export default {
                             that.tableData = list;
                             that.recursion(that.tableData);
                         }
-                        
+
                         that.menu_level = JSON.parse(JSON.stringify(list));
                         console.log("-menu-tableData--", that.tableData);
-                        
+
                         for (let i = 0; i < that.menu_level.length; i++) {
                             let item = that.menu_level[i];
                             delete item["children"];
@@ -237,10 +229,10 @@ export default {
                             that.tableData = list;
                             that.recursion(that.tableData);
                         }
-                        
+
                         that.router_level = JSON.parse(JSON.stringify(list));
                         // console.log("--router_level--", that.router_level);
-                        
+
                         for (let i = 0; i < that.router_level.length; i++) {
                             let item = that.router_level[i];
                             for (let y = 0; y < item.children.length; y++) {
@@ -303,7 +295,7 @@ export default {
                         .then(res => {
                             if (res.code == '200') {
                                 that.playWay();
-                                
+
                                 that.$message({
                                     type: 'success',
                                     message: '修改成功!'
@@ -386,6 +378,11 @@ export default {
 <style lang="less" scoped>
 #menuUnit {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    main {
+        flex: 1;
+    }
 }
 </style>
 

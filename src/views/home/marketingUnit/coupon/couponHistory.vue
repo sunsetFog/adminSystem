@@ -61,10 +61,12 @@
             </el-form>
         </searchDesign>
 
-        <el-table
+        <main>
+            <el-table
             :data="tableData"
             border
             style="width: 100%"
+            height="100%"
             ref="refTable"
         >
             <el-table-column prop="couponCode" label="优惠码" min-width="120"></el-table-column>
@@ -81,6 +83,9 @@
                 <template v-slot="scope">{{scope.row.orderSn===null?'N/A':scope.row.orderSn}}</template>
             </el-table-column>
         </el-table>
+        </main>
+
+
 
         <pagination :pagingObj="pagingObj" @emitWay="queryWay"></pagination>
     </section>
@@ -97,7 +102,6 @@ export default {
             },
             // -----------------
             tableData: [],
-            tableHeight: 0,
             // -----------------
             pagingObj: { pageNum: 1, pageSize: 10, total: 0 },
             coupon_row: {},
@@ -240,6 +244,11 @@ export default {
 
 <style lang="less" scoped>
 #couponHistoryUnit {
+    display: flex;
+    flex-direction: column;
+    main {
+        flex: 1;
+    }
     .title-box {
         width: 100%;
         height: 40px;
