@@ -1,3 +1,5 @@
+// @ts-nocheck
+'use sloppy'
 // import { emit } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router';
 // import HomeView from '../views/HomeView.vue'
@@ -36,13 +38,10 @@ console.log('--VueCookies.get--', VueCookies.get(process.env.VUE_APP_TOKEN_KEY))
 router.beforeEach((to, from, next) => {
     NProgress.start(); // 开始动画
     // 路由按钮权限
-    // @ts-ignore
     if(to.permsList) {
-        // @ts-ignore
         sessionStorage.setItem('permsList', JSON.stringify(to.permsList));
     }
     if (from.path == '/' && to.path != '/login') {
-        // @ts-ignore
         // if (VueCookies.get(process.env.VUE_APP_TOKEN_KEY)) {
         //     store.dispatch('routerApple').then(function (value) {
         //         // console.log('--then结束--', value);
