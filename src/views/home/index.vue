@@ -23,14 +23,16 @@
                     </li>
                 </ul>
             </div>
-            <div class="user-box" slot="reference">
-                <div>
-                    <img src="@sky/static/image1/AheadVenus.png">
+            <template #reference>
+                <div class="user-box">
+                    <div>
+                        <img src="@sky/static/image1/AheadVenus.png">
+                    </div>
+                    <div>
+                        <span>Rafael</span>
+                    </div>
                 </div>
-                <div>
-                    <span>Rafael</span>
-                </div>
-            </div>
+            </template>
         </el-popover>
 
 

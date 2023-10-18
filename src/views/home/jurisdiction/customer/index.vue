@@ -85,10 +85,12 @@
                     </el-form-item>
                 </el-form>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelWay">取 消</el-button>
-                <el-button type="primary" @click="sureWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelWay">取 消</el-button>
+                    <el-button type="primary" @click="sureWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
 
         <el-dialog
@@ -107,10 +109,12 @@
                     </el-option>
                 </el-select>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelRoleWay">取 消</el-button>
-                <el-button type="primary" @click="sureRoleWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelRoleWay">取 消</el-button>
+                    <el-button type="primary" @click="sureRoleWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
     </section>
 </template>

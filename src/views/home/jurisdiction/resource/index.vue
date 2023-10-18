@@ -29,7 +29,9 @@
                     </el-col>
                 </el-row>
             </el-form>
-            <el-button type="primary" #apple @click="categoryWay">资源分类</el-button>
+            <template #apple>
+                <el-button type="primary" @click="categoryWay">资源分类</el-button>
+            </template>
         </searchDesign>
 
         <main>
@@ -91,10 +93,12 @@
                     </el-form-item>
                 </el-form>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelWay">取 消</el-button>
-                <el-button type="primary" @click="sureWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelWay">取 消</el-button>
+                    <el-button type="primary" @click="sureWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
 
     </section>

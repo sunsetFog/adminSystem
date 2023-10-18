@@ -39,10 +39,12 @@
                     <el-col :span="8">￥{{order_obj.payAmount+moneyInfo.freightAmount-moneyInfo.discountAmount}}</el-col>
                 </el-row>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelWay">取 消</el-button>
-                <el-button type="primary" @click="sureWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelWay">取 消</el-button>
+                    <el-button type="primary" @click="sureWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
     </section>
 </template>

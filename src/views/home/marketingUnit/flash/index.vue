@@ -10,7 +10,9 @@
                     </el-col>
                 </el-row>
             </el-form>
-            <el-button type="primary" #apple @click="flashSession">秒杀时间段列表</el-button>
+            <template #apple>
+                <el-button type="primary" @click="flashSession">秒杀时间段列表</el-button>
+            </template>
         </searchDesign>
 
         <main>

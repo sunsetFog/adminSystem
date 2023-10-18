@@ -58,7 +58,9 @@
                     </el-form-item>
                     <el-form-item label="商品重量:" prop="weight">
                         <el-input v-model="formOf01.weight" placeholder="请输入商品重量">
-                            <div slot="suffix">克</div>
+                            <template #suffix>
+                                <div>克</div>
+                            </template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="排序:" prop="sort">
@@ -273,12 +275,14 @@
 
 
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelWay">取 消</el-button>
-                <el-button type="primary" @click="backWay" v-if="guide_active != 0">上一步</el-button>
-                <el-button type="primary" @click="nextWay"  v-if="guide_active != 3">下一步</el-button>
-                <el-button type="primary" @click="sureWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelWay">取 消</el-button>
+                    <el-button type="primary" @click="backWay" v-if="guide_active != 0">上一步</el-button>
+                    <el-button type="primary" @click="nextWay"  v-if="guide_active != 3">下一步</el-button>
+                    <el-button type="primary" @click="sureWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
     </section>
 </template>

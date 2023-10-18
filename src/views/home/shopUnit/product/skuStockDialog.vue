@@ -13,7 +13,9 @@
                     <el-col :span="3">sku编号:</el-col>
                     <el-col :span="11">
                         <el-input placeholder="sku编号" v-model="sku_value">
-                            <el-button #append icon="el-icon-search" @click="skuList()"></el-button>
+                            <template #append>
+                                <el-button icon="el-icon-search" @click="skuList()"></el-button>
+                            </template>
                         </el-input>
                     </el-col>
                 </el-row>
@@ -60,10 +62,12 @@
                     </el-table-column>
                 </el-table>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelGoodsWay">取 消</el-button>
-                <el-button type="primary" @click="sureGoodsWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelGoodsWay">取 消</el-button>
+                    <el-button type="primary" @click="sureGoodsWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
     </section>
 </template>

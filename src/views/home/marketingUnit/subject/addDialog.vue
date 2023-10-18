@@ -11,11 +11,13 @@
                     <el-col :span="3">专题名称:</el-col>
                     <el-col :span="11">
                         <el-input placeholder="" v-model="keyword">
-                            <el-button #append icon="el-icon-search" @click="queryWay()"></el-button>
+                            <template #append>
+                                <el-button icon="el-icon-search" @click="queryWay()"></el-button>
+                            </template>
                         </el-input>
                     </el-col>
                 </el-row>
-                <!-- 
+                <!--
                     如何解决分页使勾选消失的问题？
                     加上
                     :row-key="getRowKeys"
@@ -36,10 +38,12 @@
                 </el-table>
                 <pagination :pagingObj="pagingObj" @emitWay="queryWay"></pagination>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelWay">取 消</el-button>
-                <el-button type="primary" @click="sureWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelWay">取 消</el-button>
+                    <el-button type="primary" @click="sureWay">确 定</el-button>
+                </section>
+            </template>
         </el-dialog>
     </section>
 </template>

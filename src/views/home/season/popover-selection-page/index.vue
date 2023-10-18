@@ -39,20 +39,24 @@
   trigger="manual"
   v-model="box_visible"
   >
+  <template #reference>
+    <el-select v-model="choice_arr" multiple placeholder="请选择" @click.native="choiceWay" @remove-tag="removeTag" popper-class="cool-dropdown">
+        <el-option
+        v-for="item in all_data"
+        :key="item.id"
+        :label="item.name"
+        :value="item.id">
+        </el-option>
+    </el-select>
+  </template>
 
-<el-select #reference v-model="choice_arr" multiple placeholder="请选择" @click.native="choiceWay" @remove-tag="removeTag" popper-class="cool-dropdown">
-    <el-option
-      v-for="item in all_data"
-      :key="item.id"
-      :label="item.name"
-      :value="item.id">
-    </el-option>
-</el-select>
 
 <el-row :gutter="20" style="margin-bottom: 20px;">
     <el-col :span="12">
         <el-input placeholder="请输入品牌名称" v-model="keyword">
-            <el-button #append icon="el-icon-search" @click="queryWay()"></el-button>
+            <template #append>
+                <el-button icon="el-icon-search" @click="queryWay()"></el-button>
+            </template>
         </el-input>
     </el-col>
     <el-col :span="12">

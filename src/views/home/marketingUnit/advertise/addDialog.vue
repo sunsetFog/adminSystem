@@ -1,11 +1,6 @@
 <template>
     <section id="addDialog">
-        <el-dialog
-            :title="dialog_title"
-            v-model="dialogVisible"
-            width="600px"
-            :close-on-click-modal="false"
-            >
+        <el-dialog :title="dialog_title" v-model="dialogVisible" width="600px" :close-on-click-modal="false">
             <section class="mercury">
                 <el-form :model="withForm" :rules="rulesCheck" ref="withForm" label-width="100px">
                     <el-form-item label="广告名称:" prop="name">
@@ -13,34 +8,25 @@
                     </el-form-item>
                     <el-form-item label="广告位置:">
                         <el-select v-model="withForm.type">
-                        <el-option
-                            v-for="type in typeOptions"
-                            :key="type.value"
-                            :label="type.label"
-                            :value="type.value">
-                        </el-option>
+                            <el-option v-for="type in typeOptions" :key="type.value" :label="type.label"
+                                :value="type.value">
+                            </el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="开始时间:" prop="startTime">
-                        <el-date-picker
-                        type="datetime"
-                        placeholder="选择日期"
-                        v-model="withForm.startTime"
-                        value-format="yyyy-MM-dd hh:mm:ss">
+                        <el-date-picker type="datetime" placeholder="选择日期" v-model="withForm.startTime"
+                            value-format="yyyy-MM-dd hh:mm:ss">
                         </el-date-picker>
                     </el-form-item>
                     <el-form-item label="到期时间:" prop="endTime">
-                        <el-date-picker
-                        type="datetime"
-                        placeholder="选择日期"
-                        v-model="withForm.endTime"
-                        value-format="yyyy-MM-dd hh:mm:ss">
+                        <el-date-picker type="datetime" placeholder="选择日期" v-model="withForm.endTime"
+                            value-format="yyyy-MM-dd hh:mm:ss">
                         </el-date-picker>
                     </el-form-item>
                     <el-form-item label="上线/下线：">
                         <el-radio-group v-model="withForm.status">
-                        <el-radio :label="0">下线</el-radio>
-                        <el-radio :label="1">上线</el-radio>
+                            <el-radio :label="0">下线</el-radio>
+                            <el-radio :label="1">上线</el-radio>
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="广告图片：">
@@ -57,10 +43,13 @@
                     </el-form-item>
                 </el-form>
             </section>
-            <section slot="footer" class="dialog-footer">
-                <el-button @click="cancelWay">取 消</el-button>
-                <el-button type="primary" @click="sureWay">确 定</el-button>
-            </section>
+            <template #footer>
+                <section class="dialog-footer">
+                    <el-button @click="cancelWay">取 消</el-button>
+                    <el-button type="primary" @click="sureWay">确 定</el-button>
+                </section>
+            </template>
+
         </el-dialog>
     </section>
 </template>
@@ -116,7 +105,7 @@ export default {
                 note: row.note || ''
             }
             that.save_row = row
-            that.$nextTick(function() {
+            that.$nextTick(function () {
                 that.$refs.refUpload.download_url = row.download_url || '';
                 that.$refs.refUpload.imageUrl = row.pic || '';
             });
@@ -187,7 +176,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#addDialog {
-
-}
+#addDialog {}
 </style>

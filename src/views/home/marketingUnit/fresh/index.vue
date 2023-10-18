@@ -21,7 +21,9 @@
                     </el-col>
                 </el-row>
             </el-form>
-            <el-button type="primary" #apple @click="addWay">选择品牌</el-button>
+            <template #apple>
+                <el-button type="primary" @click="addWay">选择品牌</el-button>
+            </template>
         </searchDesign>
 
         <main>

@@ -392,12 +392,14 @@
           </el-form-item>
         </el-form>
       </div>
-      <div slot="footer" class="dialog-footer">
-        <el-button size="small" @click="handleClose">取 消</el-button>
-        <el-button size="small" type="primary" @click="sureEvent"
-          >确 定</el-button
-        >
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+            <el-button size="small" @click="handleClose">取 消</el-button>
+            <el-button size="small" type="primary" @click="sureEvent"
+            >确 定</el-button
+            >
+        </div>
+      </template>
     </el-dialog>
 
     <!-- <el-dialog title="修改排序" v-model="dialogInfoTableSortNoVisible">

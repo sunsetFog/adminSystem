@@ -9,37 +9,39 @@
         </el-steps>
 
         <el-card shadow="never">
-            <section slot="header" class="operate-container">
-                <div class="icon-box">
-                    <i class="el-icon-warning"></i>
-                </div>
+            <template #header>
+                <section class="operate-container">
+                    <div class="icon-box">
+                        <i class="el-icon-warning"></i>
+                    </div>
 
-                <div class="order-status">当前订单状态：{{formatStatus(order_obj.status)}}</div>
+                    <div class="order-status">当前订单状态：{{formatStatus(order_obj.status)}}</div>
 
-                <div class="operate-box" v-show="order_obj.status===0">
-                    <el-button @click="consigneeWay">修改收货人信息</el-button>
-                    <el-button>修改商品信息</el-button>
-                    <el-button @click="costWay">修改费用信息</el-button>
-                    <el-button @click="messageWay">发送站内信</el-button>
-                    <el-button @click="closeWay">关闭订单</el-button>
-                    <el-button @click="remarksWay">备注订单</el-button>
-                </div>
-                <div class="operate-box" v-show="order_obj.status===1">
-                    <el-button @click="consigneeWay">修改收货人信息</el-button>
-                    <el-button @click="messageWay">发送站内信</el-button>
-                    <el-button>取消订单</el-button>
-                    <el-button @click="remarksWay">备注订单</el-button>
-                </div>
-                <div class="operate-box" v-show="order_obj.status===2||order_obj.status===3">
-                    <el-button @click="followUpWay">订单跟踪</el-button>
-                    <el-button @click="messageWay">发送站内信</el-button>
-                    <el-button @click="remarksWay">备注订单</el-button>
-                </div>
-                <div class="operate-box" v-show="order_obj.status===4">
-                    <el-button @click="deleteWay">删除订单</el-button>
-                    <el-button @click="remarksWay">备注订单</el-button>
-                </div>
-            </section>
+                    <div class="operate-box" v-show="order_obj.status===0">
+                        <el-button @click="consigneeWay">修改收货人信息</el-button>
+                        <el-button>修改商品信息</el-button>
+                        <el-button @click="costWay">修改费用信息</el-button>
+                        <el-button @click="messageWay">发送站内信</el-button>
+                        <el-button @click="closeWay">关闭订单</el-button>
+                        <el-button @click="remarksWay">备注订单</el-button>
+                    </div>
+                    <div class="operate-box" v-show="order_obj.status===1">
+                        <el-button @click="consigneeWay">修改收货人信息</el-button>
+                        <el-button @click="messageWay">发送站内信</el-button>
+                        <el-button>取消订单</el-button>
+                        <el-button @click="remarksWay">备注订单</el-button>
+                    </div>
+                    <div class="operate-box" v-show="order_obj.status===2||order_obj.status===3">
+                        <el-button @click="followUpWay">订单跟踪</el-button>
+                        <el-button @click="messageWay">发送站内信</el-button>
+                        <el-button @click="remarksWay">备注订单</el-button>
+                    </div>
+                    <div class="operate-box" v-show="order_obj.status===4">
+                        <el-button @click="deleteWay">删除订单</el-button>
+                        <el-button @click="remarksWay">备注订单</el-button>
+                    </div>
+                </section>
+            </template>
 
             <section class="content-box">
                 <div class="title-box">基本信息</div>
@@ -84,7 +86,9 @@
                         width="200"
                         trigger="hover"
                         :content="order_obj.promotionInfo">
-                        <span slot="reference">{{formatLongText(order_obj.promotionInfo)}}</span>
+                        <template #reference>
+                            <span>{{formatLongText(order_obj.promotionInfo)}}</span>
+                        </template>
                         </el-popover>
                     </el-col>
                 </el-row>

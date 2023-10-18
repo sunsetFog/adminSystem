@@ -84,7 +84,7 @@ import 'viewerjs/dist/viewer.css';
 
 rainbow.use(store)
 .use(router)
-.use(ElementUI, { size: 'small', zIndex: 3000, locale: i18n.locale }) // 配置 Element Plus 的语言
+.use(ElementUI, { size: 'small', zIndex: 3000 })
 .use(VueCookies)
 .use(i18n)
 // .use(Viewer)
