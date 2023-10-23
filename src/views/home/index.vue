@@ -10,7 +10,7 @@
 
     <div class="home-right">
       <div class="header">
-        <i class="el-icon-menu show-menu" @click="collapseEvent"></i>
+        <el-icon @click="collapseEvent"><Menu/></el-icon>
         <el-popover
         placement="bottom"
         width="100px"
@@ -18,7 +18,7 @@
             <div class="system-box">
                 <ul>
                     <li @click="exitTheSystem">
-                        <i class="el-icon-switch-button"></i>
+                        <el-icon><SwitchButton/></el-icon>
                         <span>退出系统</span>
                     </li>
                 </ul>

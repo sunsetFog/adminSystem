@@ -12,7 +12,7 @@
             <template #header>
                 <section class="operate-container">
                     <div class="icon-box">
-                        <i class="el-icon-warning"></i>
+                        <el-icon><Warning/></el-icon>
                     </div>
 
                     <div class="order-status">当前订单状态：{{formatStatus(order_obj.status)}}</div>

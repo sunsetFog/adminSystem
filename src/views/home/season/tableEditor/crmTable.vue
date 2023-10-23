@@ -21,7 +21,7 @@
         >
         <!--         -------slot插槽的用法---------            -->
         <!-- <div slot="operationBody" slot-scope="slotProps">
-            <el-button @click="lyDelete(slotProps.lyItem)"><i class="el-icon-delete"></i>删除</el-button>
+            <el-button @click="lyDelete(slotProps.lyItem)">删除</el-button>
         </div> -->
 
         </table-editor>

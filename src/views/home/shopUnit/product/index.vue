@@ -100,7 +100,7 @@
             <el-table-column min-width="60">
                 <template #header>SKU库存</template>
                 <template v-slot="scope">
-                    <i class="el-icon-edit" @click="skuStockShow(scope.row)"></i>
+                    <el-icon><Edit @click="skuStockShow(scope.row)"/></el-icon>
                 </template>
             </el-table-column>
             <el-table-column prop="sale" label="销量" min-width="60"></el-table-column>
