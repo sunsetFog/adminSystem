@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server:dev": "vue-cli-service serve --mode dev",
+    "server:dev:bd": "cross-env platform=bd vue-cli-service serve --mode dev",
+    "server:dev:tb": "cross-env platform=tb vue-cli-service serve --mode dev",
     "server:prod": "vue-cli-service serve --mode prod",
     "build:dev": "vue-cli-service build --mode dev",
     "build:prod": "vue-cli-service build --mode prod",
