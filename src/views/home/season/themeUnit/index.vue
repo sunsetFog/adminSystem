@@ -1,14 +1,19 @@
 <template>
     <section id="themeUnit">
         <!-- study: 皮肤切换 -->
-        方式1<br/><br/>
-        <el-button @click="changeTheme('white')">白色</el-button>
-        <el-button @click="changeTheme('black')">黑色</el-button>
-        <el-button @click="changeTheme('blue')">蓝色</el-button>
-        <br/><br/>方式2<br/><br/>
-        <el-button @click="changeTheme2('daylight')">白天主题</el-button>
-        <el-button @click="changeTheme2('night')">黑夜主题</el-button>
-        <el-button @click="changeTheme2('macaron')">马卡龙主题</el-button>
+        <div>
+            <el-button @click="changeTheme('light')">白天主题</el-button>
+            <el-button @click="changeTheme('night')">黑夜主题</el-button>
+            <el-button @click="changeTheme('macaron')">马卡龙主题</el-button>
+        </div>
+        <LineTextLine>var变量切换</LineTextLine>
+        <main class="scenery">
+
+        </main>
+        <LineTextLine>切换皮肤</LineTextLine>
+        <main class="fabulous">
+
+        </main>
     </section>
 </template>
 
@@ -20,31 +25,37 @@ export default {
             console.log("-切换主题-0=", type);
             this.$means.changeTheme(type);
         },
-        changeTheme2(type) {
-            this.$means.changeTheme2(type);
+        changeTheme(type) {
+            this.$means.changeTheme(type);
         },
     }
 }
 </script>
 
 <style lang="scss">
-/*
-bug: vue全局使用scss样式文件
-main.js加载scss, 结果js文件加载scss导致变量用不了，建议放app.vue且lang="scss"。
-那么问题来了，react是如何用全局scss的呢？在news\build\utils.js vue全局使用scss样式文件
-
-*/
-
-// @import '~@static/crm/themeUnit/themeSkin2/index.scss';
 #themeUnit {
     width: 100%;
     height: 100%;
-    background: #61A5FF;
-    @include theme-night() {
-        background: #2774FF;
+    div {
+        padding-bottom: 10px;
     }
-    @include theme-macaron() {
-        background: #73d5ff;
+    .scenery {
+        width: 100%;
+        height: 100px;
+        background: var(--background);
+    }
+    .fabulous {
+        width: 100%;
+        height: 100px;
+        @include theme-light() {
+            background: #ff4d4f;
+        }
+        @include theme-night() {
+            background: #2774FF;
+        }
+        @include theme-macaron() {
+            background: #73d5ff;
+        }
     }
 }
 </style>
