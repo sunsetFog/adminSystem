@@ -127,16 +127,16 @@ export default defineComponent({
 #menuDesign {
     height: calc(100% - 50px);
 
-    // /deep/.el-scrollbar__wrap{
-    //     overflow-x: hidden !important;
-    // }
-    // /*水平折叠收起菜单,隐藏文字和标签*/
-    // /deep/.el-menu--collapse span {
-    //   display: none;
-    // }
-    // /deep/.el-menu--collapse .el-sub-menu__title .el-sub-menu__icon-arrow {
-    //     display: none;
-    // }
+    :deep(.el-scrollbar__wrap) {
+        overflow-x: hidden !important;
+    }
+    /*水平折叠收起菜单,隐藏文字和标签*/
+    :deep(.el-menu--collapse span) {
+        display: none;
+    }
+    :deep(.el-menu--collapse .el-sub-menu__title .el-sub-menu__icon-arrow) {
+        display: none;
+    }
 }
 </style>
 

@@ -1,16 +1,21 @@
 <template>
   <section id="home-box">
     <div class="home-left" :style="{width: left_width}">
-      <div class="logo-name">
-        <img :class="{'logo-img': true,'logo-active': isCollapse}" src="@sky/static/logo/logo.png">
-        <span v-show="!isCollapse">爱沃里管理后台</span>
+      <div class="logoBox1" v-if="!isCollapse">
+        <img src="@sky/static/logo/logo.png">
+        <p>爱沃里管理后台</p>
+      </div>
+      <div class="logoBox2" v-else>
+        <img src="@sky/static/logo/logo.png">
       </div>
       <menuDesign :isCollapse="isCollapse"></menuDesign>
     </div>
 
     <div class="home-right">
-      <div class="header">
-        <el-icon @click="collapseEvent"><Menu/></el-icon>
+      <header class="headerBox">
+        <div class="menuActive">
+            <el-icon @click="collapseEvent"><Menu/></el-icon>
+        </div>
         <el-popover
         placement="bottom"
         width="100px"
@@ -36,7 +41,7 @@
         </el-popover>
 
 
-      </div>
+      </header>
       <div class="navigation-tab">
           <tabsDesign></tabsDesign>
       </div>
@@ -121,29 +126,34 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        .logo-name {
-            width: 100%;
+        .logoBox1 {
+            width: 300px;
             height: 50px;
             margin: 20px 0 30px 0;
-            .logo-img {
+            img {
                 width: 50px;
                 height: 50px;
                 float: left;
                 margin: 0 10px;
             }
-            .logo-active {
-                width: 30px;
-                height: 30px;
-                margin: 0 0px 0 16px;
-            }
-            span {
+            p {
                 height: 50px;
                 line-height: 50px;
-                display: inline-block;
                 float: left;
                 color: #435ebe;
                 font-weight: 600;
                 font-size: 24px;
+            }
+        }
+        .logoBox2 {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 30px;
+                height: 30px;
             }
         }
 
@@ -155,12 +165,20 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        .header {
+        .headerBox {
             width: 100%;
             height: 50px;
             line-height: 50px;
             padding: 0 20px;
             box-shadow: 0 0.5px 2px #999999;
+            .menuActive {
+                width: fit-content;
+                height: 100%;
+                float: left;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
             .show-menu {
                 font-size: 24px;
             }
