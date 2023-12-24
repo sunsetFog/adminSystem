@@ -1,6 +1,6 @@
 <template>
   <section id="home-box">
-    <div class="home-left" :style="{width: left_width}">
+    <aside class="home-left" :style="{width: left_width}">
       <div class="logoBox1" v-if="!isCollapse">
         <img src="@sky/static/logo/logo.png">
         <p>爱沃里管理后台</p>
@@ -9,7 +9,7 @@
         <img src="@sky/static/logo/logo.png">
       </div>
       <menuDesign :isCollapse="isCollapse"></menuDesign>
-    </div>
+    </aside>
 
     <div class="home-right">
       <header class="headerBox">
@@ -45,9 +45,9 @@
       <div class="navigation-tab">
           <tabsDesign></tabsDesign>
       </div>
-      <div class="pen-router-view">
+      <article class="pen-router-view">
         <router-view></router-view>
-      </div>
+      </article>
     </div>
   </section>
 </template>

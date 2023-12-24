@@ -94,9 +94,11 @@ export default defineComponent({
         },
         curTabReload() {
             this.$router.go(0);
+            this.contextMenuVisible = false;
         },
         closeAllTabs() {
             this.$store.commit('addTabs', []);
+            this.contextMenuVisible = false;
         },
         closeOtherTabs(value) {
             let arr = JSON.parse(JSON.stringify(this.tabList));
@@ -123,6 +125,7 @@ export default defineComponent({
                 })
             }
             this.$store.commit('addTabs', arr);
+            this.contextMenuVisible = false;
         }
     },
 });
