@@ -1,14 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
-import router from './router'
-import store from './store'
+import { createApp } from 'vue';
+import App from './App.vue';
+import './registerServiceWorker';
+import router from './router';
+import store from './store';
 // 加载全局样式
 import '@root/global.css';
 import '@root/global.less';
 import '@root/global.scss';
-
-
 
 // mock
 import '@sky/database/index';
@@ -16,14 +14,11 @@ import '@sky/database/index';
 // font-awesome图标
 import 'font-awesome/css/font-awesome.min.css';
 
-
-
-
 const rainbow = createApp(App);
 
 // 全局注册自定义指令
 import * as directives from '@sky/directive';
-Object.keys(directives).forEach(key => {
+Object.keys(directives).forEach((key) => {
     rainbow.directive(key, directives[key]);
 });
 
@@ -38,11 +33,13 @@ import pagination from '@sky/pcDesign/components/pagination.vue';
 rainbow.component('pagination', pagination);
 import searchDesign from '@/components/searchDesign.vue';
 rainbow.component('searchDesign', searchDesign);
+import Layout1 from '@sky/pcDesign/components/layout1/index.vue';
+rainbow.component('Layout1', Layout1);
 // 全局注册图标组件
-import * as Icons from '@element-plus/icons-vue'
-Object.keys(Icons).forEach(key => {
-  rainbow.component(key, Icons[key])
-})
+import * as Icons from '@element-plus/icons-vue';
+Object.keys(Icons).forEach((key) => {
+    rainbow.component(key, Icons[key]);
+});
 
 // --- 原型 ---
 
@@ -57,11 +54,11 @@ import apiHttp from '@sky/axios/request2/http.js';
 rainbow.config.globalProperties.$apihttp = apiHttp;
 
 // study: indexDb缓存(本地数据库)
-let storeName  = { index: ['ex_table_name'], name: 'ex_table_name', key: 'id' }; //index:索引、name:表名、key:主键
+let storeName = { index: ['ex_table_name'], name: 'ex_table_name', key: 'id' }; //index:索引、name:表名、key:主键
 // 打开数据库
-means.openDB('ex_dbname', 1, storeName, function(db){
-  // 全局保存数据库
-  rainbow.config.globalProperties.$database = db;
+means.openDB('ex_dbname', 1, storeName, function (db) {
+    // 全局保存数据库
+    rainbow.config.globalProperties.$database = db;
 });
 
 // --- 加载 ---
@@ -80,15 +77,13 @@ import VueCookies from 'vue-cookies';
 import Viewer from 'v-viewer';
 import 'viewerjs/dist/viewer.css';
 
-
-
-rainbow.use(store)
-.use(router)
-.use(ElementUI, { size: 'small', zIndex: 3000 })
-.use(VueCookies)
-.use(i18n)
-// .use(Viewer)
-.mount('#app')
-
+rainbow
+    .use(store)
+    .use(router)
+    .use(ElementUI, { size: 'small', zIndex: 3000 })
+    .use(VueCookies)
+    .use(i18n)
+    // .use(Viewer)
+    .mount('#app');
 
 export default rainbow;

@@ -126,6 +126,9 @@ export default defineComponent({
 <style lang="less" scoped>
 #menuDesign {
     height: calc(100% - 50px);
+    :deep(.el-menu) {
+        border: none !important;
+    }
 
     :deep(.el-scrollbar__wrap) {
         overflow-x: hidden !important;
