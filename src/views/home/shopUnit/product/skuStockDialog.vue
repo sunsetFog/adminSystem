@@ -14,7 +14,7 @@
                     <el-col :span="11">
                         <el-input placeholder="sku编号" v-model="sku_value">
                             <template #append>
-                                <el-button icon="el-icon-search" @click="skuList()"></el-button>
+                                <el-button @click="skuList()"><el-icon><Search /></el-icon></el-button>
                             </template>
                         </el-input>
                     </el-col>

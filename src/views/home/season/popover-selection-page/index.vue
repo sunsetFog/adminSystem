@@ -55,7 +55,7 @@
     <el-col :span="12">
         <el-input placeholder="请输入品牌名称" v-model="keyword">
             <template #append>
-                <el-button icon="el-icon-search" @click="queryWay()"></el-button>
+                <el-button @click="queryWay()"><el-icon><Search /></el-icon></el-button>
             </template>
         </el-input>
     </el-col>

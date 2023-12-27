@@ -27,7 +27,7 @@
 </template>
 <script>
   import allActivities from "./allActivities.vue";
-  
+
   export default {
     components: {
       allActivities
@@ -45,13 +45,14 @@
     },
     methods: {
         tabEvent(value) {
-          console.log('tabEvent', value.name.split('sign')[1]);
-          this.legend_value = value.name.split('sign')[1];
+            let name1 = value.props.name;
+          console.log('tabEvent', name1);
+          this.legend_value = name1.split('sign')[1];
           this.$nextTick(function(){
-            this.$refs[value.name].platformType();
-            this.$refs[value.name].getJson();
+            this.$refs[name1].platformType();
+            this.$refs[name1].getJson();
           })
-          
+
         }
     }
   };
@@ -61,7 +62,7 @@
 .activity-management {
   width: 100%;
   height: 100%;
-  
+
   :deep(.el-tabs__content, .el-tab-pane) {
     height: 100%;
   }

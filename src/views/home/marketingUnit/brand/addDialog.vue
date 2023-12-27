@@ -12,7 +12,9 @@
                     <el-col :span="11">
                         <el-input placeholder="" v-model="keyword">
                             <template #append>
-                                <el-button icon="el-icon-search" @click="queryWay()"></el-button>
+                                <el-button @click="queryWay()">
+                                    <el-icon><Search /></el-icon>
+                                </el-button>
                             </template>
                         </el-input>
                     </el-col>

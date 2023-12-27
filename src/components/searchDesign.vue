@@ -15,7 +15,10 @@
                         </td>
                         <td style="text-align: center;">
                             <el-button v-if="chongzhi" @click="resetWay()">重置</el-button>
-                            <el-button type="primary" icon="el-icon-search" @click="queryWay" v-if="sousuo">搜索</el-button>
+                            <el-button type="primary" @click="queryWay" v-if="sousuo">
+                                <el-icon><Search /></el-icon>
+                                &nbsp;搜索
+                            </el-button>
                             <el-button type="primary" v-if="tianjia" @click="addWay()">添加</el-button>
                             <el-button type="primary" v-if="piliangshanchu">批量删除</el-button>
                             <slot name="apple"></slot>

@@ -7,7 +7,7 @@
           study: 自定义指令
        -->
       <el-button type="primary" v-operation-auth="'user:add'">二哈</el-button>
-      <el-button type="primary" size="small" icon="el-icon-search" @click="queryWay">搜索</el-button>
+      <el-button type="primary" size="small" @click="queryWay"><el-icon><Search /></el-icon>&nbsp;搜索</el-button>
     </section>
     <main>
         <el-table

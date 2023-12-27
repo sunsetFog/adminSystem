@@ -3,11 +3,13 @@
     <div class="header-info">
       <el-button
         class="newly-build"
-        icon="el-icon-plus"
         type="danger"
         size="small"
         @click="newlyEdit('新增')"
-        >新建</el-button
+        >
+        <el-icon><Plus /></el-icon>
+        &nbsp;新建
+        </el-button
       >
       <ul>
         <li
@@ -23,9 +25,8 @@
         class="search-content"
         type="primary"
         size="small"
-        icon="el-icon-search"
         @click="getJson('')"
-        >搜索</el-button
+        ><el-icon><Search /></el-icon>搜索</el-button
       >
       <el-select
         class="choose-community"
@@ -96,9 +97,9 @@
         <el-table-column min-width="100">
           <template #header> 状态 </template>
           <template v-slot="scope">
-            <i-switch v-model="scope.row.status" @on-change="(val) => {
+            <el-switch v-model="scope.row.status" @on-change="(val) => {
                   statusChange(val, scope.row);
-                }"></i-switch>
+                }"></el-switch>
           </template>
         </el-table-column>
         <el-table-column min-width="120">
@@ -1309,6 +1310,7 @@ export default {
   .endearment {
     width: 100%;
     height: 100%;
+    padding: 15px 0 15px 0;
     .remen {
       width: 35px;
       height: 15px;
