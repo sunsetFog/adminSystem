@@ -418,7 +418,7 @@
 </template>
 
 <script>
-import previewPictures from '@sky/pcDesign/components/previewPictures.vue';
+import previewPictures from '@sky/rafaelDesign/web/components/previewPictures.vue';
 // import API from "@/api/port/api";
 import Sortable from 'sortablejs'
 import uploadMixin from "./uploadMixin.js";

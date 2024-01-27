@@ -23,13 +23,13 @@
         切换翻译：<br/>
         <el-button @click="translate('zh')">中文翻译</el-button>
         <br/><br/><br/><br/>
-        
+
         <el-button @click="translate('en')">英文翻译</el-button>
     </section>
 </template>
 
 <script>
-import pagination from '@sky/pcDesign/components/pagination.vue';
+import pagination from '@sky/rafaelDesign/web/components/pagination.vue';
 export default {
     name: 'multilingual',
     components: { pagination },

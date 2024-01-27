@@ -2,11 +2,11 @@
   <section id="home-box">
     <aside class="home-left" :style="{width: left_width}">
       <div class="logoBox1" v-if="!isCollapse">
-        <img src="@sky/static/logo/logo.png">
+        <img src="@sky/rafaelDesign/static/logo/logo.png">
         <p>爱沃里管理后台</p>
       </div>
       <div class="logoBox2" v-else>
-        <img src="@sky/static/logo/logo.png">
+        <img src="@sky/rafaelDesign/static/logo/logo.png">
       </div>
       <menuDesign :isCollapse="isCollapse"></menuDesign>
     </aside>
@@ -31,7 +31,7 @@
             <template #reference>
                 <div class="user-box">
                     <div>
-                        <img src="@sky/static/image1/AheadVenus.png">
+                        <img src="@sky/rafaelDesign/static/image1/AheadVenus.png">
                     </div>
                     <div>
                         <span>Rafael</span>

@@ -9,7 +9,7 @@ import '@root/global.less';
 import '@root/global.scss';
 
 // mock
-import '@sky/database/index';
+import '@sky/rafaelDesign/database/index';
 
 // font-awesome图标
 import 'font-awesome/css/font-awesome.min.css';
@@ -17,23 +17,23 @@ import 'font-awesome/css/font-awesome.min.css';
 const rainbow = createApp(App);
 
 // 全局注册自定义指令
-import * as directives from '@sky/directive';
+import * as directives from '@sky/rafaelDesign/directive';
 Object.keys(directives).forEach((key) => {
     rainbow.directive(key, directives[key]);
 });
 
 // 全局注册组件
-import LineTextLine from '@sky/pcDesign/components/lineTextLine/index.vue';
+import LineTextLine from '@sky/rafaelDesign/web/components/lineTextLine/index.vue';
 rainbow.component('LineTextLine', LineTextLine);
-import previewPictures from '@sky/pcDesign/components/previewPictures.vue';
+import previewPictures from '@sky/rafaelDesign/web/components/previewPictures.vue';
 rainbow.component('previewPictures', previewPictures);
-import upload1 from '@sky/pcDesign/components/upload1.vue';
+import upload1 from '@sky/rafaelDesign/web/components/upload1.vue';
 rainbow.component('upload1', upload1);
-import pagination from '@sky/pcDesign/components/pagination.vue';
+import pagination from '@sky/rafaelDesign/web/components/pagination.vue';
 rainbow.component('pagination', pagination);
 import searchDesign from '@/components/searchDesign.vue';
 rainbow.component('searchDesign', searchDesign);
-import Layout1 from '@sky/pcDesign/components/layout1/index.vue';
+import Layout1 from '@sky/rafaelDesign/web/components/layout1/index.vue';
 rainbow.component('Layout1', Layout1);
 // 全局注册图标组件
 import * as Icons from '@element-plus/icons-vue';
@@ -43,14 +43,14 @@ Object.keys(Icons).forEach((key) => {
 
 // --- 原型 ---
 
-import means from '@sky/means/index.js';
+import means from '@sky/rafaelDesign/means/index.js';
 rainbow.config.globalProperties.$means = means;
 
 // study: 全局注册过滤器
-import filters from '@sky/filters';
+import filters from '@sky/rafaelDesign/filters';
 rainbow.config.globalProperties.$filters = filters;
 // axios
-import apiHttp from '@sky/axios/request2/http.js';
+import apiHttp from '@sky/rafaelDesign/axios/request2/http.js';
 rainbow.config.globalProperties.$apihttp = apiHttp;
 
 // study: indexDb缓存(本地数据库)
@@ -62,7 +62,7 @@ means.openDB('ex_dbname', 1, storeName, function (db) {
 });
 
 // --- 加载 ---
-import i18n from '@sky/i18n';
+import i18n from '@sky/rafaelDesign/i18n';
 
 /*
 vue3 引入element-ui
